@@ -1,5 +1,7 @@
 # SPAT-on-her-back
 
+## Git Commands
+
 git init 
 
 git remote add origin <link>
