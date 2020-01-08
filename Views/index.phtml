@@ -1,5 +1,10 @@
 <?php require_once "Template/header.phtml" ?>
 
 <h5>Index Page View</h5>
+<?php if (Authentication::isLoggedIn()) : ?>
+    <p>Hi you are logged in! <?= Authentication::User()->username(); ?></p>
+<?php else : ?>
+    <p>Please login</p>
+<?php endif; ?>
 
 <?php require_once "Template/footer.phtml" ?>
