@@ -58,15 +58,18 @@ class User
     }
 
     // Relationships
-    public function getRoles()
-    {
-        $roles = [];
 
+    /**
+     * @return RoleCollection
+     */
+    public function roles()
+    {
         $sql = "SELECT role_name FROM user_roles
                 LEFT JOIN roles r on user_roles.role_id = r.id
                 WHERE user_id = 1";
 
         $roles = Database::db()->query($sql)->fetchAll(PDO::FETCH_COLUMN);
-        return $roles;
+
+        return new RoleCollection($this, $roles);
     }
 }
