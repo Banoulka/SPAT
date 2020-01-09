@@ -17,6 +17,6 @@ if (Authentication::isAdmin()) {
 
     require_once "Views/adminDashboard.phtml";
 } else {
-    //TODO: Require the authorsiation error page
+    //TODO: Require the authorization error page
     echo "no access";
 }
