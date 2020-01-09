@@ -3,8 +3,25 @@
 
 class Role
 {
-    public static function addRole($dataArr)
+    public static function addRole($roleName)
     {
-        $sql = "INSERT INTO roles (role_name) VALUES (:roleName)";
+        QueryBuilder::getInstance()
+            ->table("roles")
+            ->insert(["role_name" => $roleName]);
+    }
+
+    public static function removeRole($roleID)
+    {
+        QueryBuilder::getInstance()
+            ->table("roles")
+            ->remove(["id" => $roleID]);
+    }
+
+    public static function allRoles()
+    {
+        return QueryBuilder::getInstance()->table("roles")
+                ->fetchAs("Role")
+                ->orderby("role_name")
+                ->getAll();
     }
 }
