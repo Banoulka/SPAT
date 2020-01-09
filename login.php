@@ -1,5 +1,4 @@
 <?php
-
 // Bootstrap
 session_start();
 spl_autoload_register(function ($className) {

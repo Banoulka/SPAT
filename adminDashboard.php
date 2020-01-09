@@ -1,6 +1,6 @@
 <?php
 
-// Bootstrap
+// Bootstra
 session_start();
 spl_autoload_register(function ($className) {
     require_once "Models/lib/$className.php";
@@ -18,4 +18,3 @@ if (Authentication::isAdmin()) {
     //TODO: Require the authorsiation error page
     echo "no access";
 }
-
