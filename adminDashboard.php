@@ -13,6 +13,8 @@ if (Authentication::isAdmin()) {
 
     $users = User::getAllusers();
 
+    var_dump(Authentication::User()->roles());
+
     require_once "Views/adminDashboard.phtml";
 } else {
     //TODO: Require the authorsiation error page
