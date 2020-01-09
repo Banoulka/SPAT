@@ -1,5 +1,14 @@
 <?php require_once "template/header.phtml"?>
 
+<?php if (isset($message)) : ?>
+<div class="alert alert-success alert-dismissible fade show" role="alert">
+    <?= $message ?>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<?php endif; ?>
+
 <div class="container">
     <div class="row justify-content-center align-items-center vh-100">
         <div class="col-md-6">

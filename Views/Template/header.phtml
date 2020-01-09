@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="/css/styles.css">
     <link rel="stylesheet" href="/css/bootstrap.min.css">
     <script src="/js/scripts.js"></script>
+
+    <script src="https://kit.fontawesome.com/8aa396f8e9.js" crossorigin="anonymous"></script>
 </head>
 <body>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -26,7 +28,14 @@
                         <li class="nav-item">
                             <a class="nav-link" href="adminDashboard.php">Dashboard</a>
                         </li>
+                        <?php if (Authentication::isLoggedIn()) : ?>
+                            <li class="nav-item">
+                                <a class="nav-link" href="logout.php">logout</a>
+                            </li>
+                        <?php endif; ?>
+
                     </ul>
+
                     <ul class="navbar-nav ml-auto">
                         <?php if (!Authentication::isLoggedIn()) : ?>
                             <li class="nav-item">
