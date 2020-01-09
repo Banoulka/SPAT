@@ -1,6 +1,28 @@
 <?php
+// Bootstrap
 session_start();
 spl_autoload_register(function ($className) {
     require_once "Models/lib/$className.php";
 });
-require_once "Views/login.phtml";
+
+if (Authentication::isLoggedIn()) {
+    Route::redirect("index.php");
+} else {
+    $errors = [];
+
+    if (isset($_POST["submit"])) {
+        $formData = [
+            "username" => htmlentities($_POST["username"]),
+            "password" => htmlentities($_POST["password"]),
+        ];
+
+        $errors = Authentication::validateAndLoginUser($formData["username"], $formData["password"]);
+
+        if (!$errors) {
+            //TODO: redirect somewhere
+            Route::redirect("adminDashboard.php");
+        }
+    }
+
+    require_once "Views/login.phtml";
+}
