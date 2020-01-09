@@ -1,37 +1,25 @@
 <?php require_once "Template/header.phtml" ?>
-<head>
-    <link href="css/styles.css" type="text/css" link rel="stylesheet">
-</head>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="navigation">
+                <a href="adminDashboard.php?tab=addRole">Add Role</a>
+                <a href="adminDashboard.php?tab=addUser">Add User</a>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <?php switch ($page) {
+                case "addRole":
+                    require_once "Template/addRole.phtml";
+                    break;
+            } ?>
+        </div>
+    </div>
+</div>
     <h5>Index Page View</h5>
-
-
-
-    <table >
-        <tr>
-            <div class="button-style">
-            <td><button type="button">Assign Roles</button> </td>
-            <td><button type="button">Show all users</button></td>
-            </div>
-        </tr>
-        <tr>
-            <div class="button-style">
-            <td><button type="button">Create new User</button></td>
-            <td><button type="button">Edit Roles</button></td>
-            </div>
-        </tr>
-        <tr>
-            <div class="button-style">
-            <td><button type="button">Assign Team</button></td>
-            <td><button type="button">Create new Team</button></td>
-            </div>
-        </tr>
-        <tr>
-            <div class="button-style">
-            <td></td>
-            <td></td>
-            </div>
-        </tr>
-    </table>
 
 </div>
 <?php require_once "Template/footer.phtml" ?>
