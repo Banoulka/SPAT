@@ -1,57 +1,29 @@
-<?php require_once "header.phtml"?>
+<h5>Create New Group</h5>
 
-<div class="row justify-content-center align-items-center ">
-    <h5>Create new Team</h5>
-</div>
-
-<div class="container">
-    <div class="row justify-content-center align-items-center ">
-        <div class="col-md-6">
-            <form>
-                <div class="form-group row">
-                    <label for="TeamName">TeamName:</label>
-                    <input type="text" id="TeamNAme" class="form-control" name="TeamName" placeholder="Please enter the team name">
-                </div>
-                <div class="form-group row">
-                    <button class="btn btn-success" type="submit" name="submit">Create Team</button>
-                </div>
-            </form>
+<form method="post" action="<?= $_SERVER["PHP_SELF"] ?>?tab=<?= $page ?>">
+    <div class="form-row my-3">
+        <label for="group_name" class="col-form-label col-md-3">Group Name:</label>
+        <div class="col-md-9">
+            <input type="text" id="group_name" class="form-control" name="group_name" placeholder="Enter a group name">
         </div>
     </div>
-</div>
-
-<div class="row justify-content-center align-items-center ">
-    <h5>Set Team Role</h5>
-</div>
-
-<div class="container">
-    <div class="row justify-content-center align-items-center ">
-
-
-
-        <select>
-            <?php
-            $teams = User::getAllusers();
-            ?>
-
-            <?php foreach($teams as $teams) : ?>
-                <option value="<?= $teams->teamname() ?>"><?= $teams->teamname() ?></option>
-            <?php endforeach; ?>
-        </select>
-
-        <select>
-            <?php
-            $role = Role::allRoles();
-            ?>
-
-            <?php foreach ($role as $roles) : ?>
-                <option value="<?= $roles->role_name() ?>"><?= $roles->role_name() ?></option>
-            <?php endforeach; ?>
-        </select>
-
-        <input type="submit">
-
-        <!-- on submit insert role value into user through the db -->
+    <div class="form-group">
+        <button class="btn btn-success" type="submit" name="createGroup">Create Group</button>
     </div>
+</form>
 
-    <?php require_once "footer.phtml"?>
+<h5>Current Groups</h5>
+
+<?php foreach (Group::allgroups() as $group) : ?>
+    <div class="group">
+        <p><?= $group->group_name ?></p>
+        <form class="ml-auto" action="<?php $_SERVER["PHP_SELF"] ?>" method="post">
+            <input type="hidden" name="groupID" value="<?= $group->id ?>">
+            <button class="btn btn-danger btn-sm" name="deleteGroup">Delete</button>
+            <button class="btn btn-success btn-sm" name="editGroup">Edit</button>
+        </form>
+    </div>
+<?php endforeach; ?>
+
+
+<h5>Team Permissions</h5>

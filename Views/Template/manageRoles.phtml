@@ -1,0 +1,32 @@
+<h5>Create New Role</h5>
+
+<form method="post" action="<?= $_SERVER["PHP_SELF"] ?>?tab=<?= $page ?>">
+    <div class="form-row my-3">
+        <label for="group_name" class="col-form-label col-md-3">Role Name:</label>
+        <div class="col-md-9">
+            <input type="text" id="role_name" class="form-control" name="role_name" placeholder="Enter a role name">
+        </div>
+    </div>
+    <div class="form-group">
+        <button class="btn btn-success" type="submit" name="createRole">Create Role</button>
+    </div>
+</form>
+
+<h5>Current Roles</h5>
+
+<?php foreach (Role::allRoles() as $role) : ?>
+    <div class="group">
+        <p><?= $role->role_name ?></p>
+        <?php if ($role->editable) : ?>
+            <form class="ml-auto" action="<?php $_SERVER["PHP_SELF"] ?>" method="post">
+                <input type="hidden" name="roleID" value="<?= $role->id ?>">
+                <button class="btn btn-danger btn-sm" name="deleteRole">Delete</button>
+                <button class="btn btn-success btn-sm" name="editRole">Edit</button>
+            </form>
+        <?php else : ?>
+            <span class="ml-auto"><i class="fas fa-lock"></i></span>
+        <?php endif; ?>
+    </div>
+<?php endforeach; ?>
+
+<h5>Role Permissions</h5>

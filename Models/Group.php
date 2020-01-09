@@ -3,26 +3,26 @@
 
 class Group
 {
-    public static function addTeam($teamName)
+    public static function addGroup($groupName)
     {
         QueryBuilder::getInstance()
-            ->table("teams")
-            ->insert(["team_name" => $teamName]);
+            ->table("groups")
+            ->insert(["group_name" => $groupName]);
     }
 
-    public static function removeTeam($teamID)
+    public static function removegroup($groupID)
     {
         QueryBuilder::getInstance()
-            ->table("teams")
-            ->remove(["id" => $teamID]);
+            ->table("groups")
+            ->remove(["id" => $groupID]);
     }
 
-    public static function allTeams()
+    public static function allgroups()
     {
         return QueryBuilder::getInstance()
-            ->table("teams")
+            ->table("groups")
             ->fetchAs("Group")
-            ->orderby("team_name")
+            ->orderby("group_name")
             ->getAll();
     }
 }

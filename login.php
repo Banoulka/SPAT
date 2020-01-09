@@ -20,7 +20,7 @@ if (Authentication::isLoggedIn()) {
 
         if (!$errors) {
             //TODO: redirect somewhere
-            Route::redirect("adminDashboard.php");
+            Route::redirect("index.php");
         }
     }
 
