@@ -28,7 +28,14 @@
                         <li class="nav-item">
                             <a class="nav-link" href="adminDashboard.php">Dashboard</a>
                         </li>
+                        <?php if (Authentication::isLoggedIn()) : ?>
+                            <li class="nav-item">
+                                <a class="nav-link" href="logout.php">logout</a>
+                            </li>
+                        <?php endif; ?>
+
                     </ul>
+
                     <ul class="navbar-nav ml-auto">
                         <?php if (!Authentication::isLoggedIn()) : ?>
                             <li class="nav-item">
