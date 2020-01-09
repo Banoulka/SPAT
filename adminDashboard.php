@@ -19,10 +19,10 @@ if (Authentication::isAdmin()) {
         $page = $_GET["tab"];
     }
 
-    var_dump(Authentication::User()->roles());
+    //var_dump(Authentication::User()->roles());
 
     require_once "Views/adminDashboard.phtml";
 } else {
-    //TODO: Require the authorsiation error page
+    //TODO: Require the authorization error page
     echo "no access";
 }

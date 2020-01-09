@@ -1,14 +1,37 @@
 <?php require_once "Template/header.phtml" ?>
-    </div>
-        <h5>The Admin Dashbord</h5>
-    </div>
+        <div class="row justify-content-center align-items-center ">
+             <div>
+                <h5>The Admin Dashbord</h5>
+             </div>
+        </div>
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            <div class="navigation">
-                <a href="adminDashboard.php?tab=addRole">Add Role</a>
-                <a href="adminDashboard.php?tab=NewUser">New User</a>
-            </div>
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav">
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="adminDashboard.php?tab=newUser">Add User</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="adminDashboard.php?tab=addRole">Add Role</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="adminDashboard.php?tab=checkSignup">Check Signup</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="adminDashboard.php?tab=manageTeams">Manage teams</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="adminDashboard.php?tab=manageUsers">Manage users</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
         </div>
     </div>
     <div class="row">
@@ -17,13 +40,23 @@
                 case "AddRole":
                     require_once "Template/addRole.phtml";
                     break;
-                case "NewUser":
+                case "newUser":
                     require_once "Template/newUser.phtml";
                     break;
-            } ?>
+                case "AddTeam":
+                    require_once "Template/manageTeams.phtml";
+                    break;
+                case "checkSignup":
+                    require_once "Template/checkSignup.phtml";
+                    break;
+                case "manageUsers":
+                    require_once "Template/manageUsers.phtml";
+                    break;
+            }
+            ?>
         </div>
     </div>
 
-<?php require_once "Template/footer.phtml" ?>
 
+    <?php require_once "Template/footer.phtml"?>
 
