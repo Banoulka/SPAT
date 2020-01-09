@@ -22,9 +22,9 @@ if (Authentication::isAdmin()) {
     }
 
 
-    var_dump(Authentication::User()->roles());
+   // var_dump(Authentication::User()->roles());
 
-    var_dump(Role::allRoles());
+   // var_dump(Role::allRoles());
 
 
     require_once "Views/adminDashboard.phtml";
