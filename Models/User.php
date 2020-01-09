@@ -30,6 +30,22 @@ class User
         }
     }
 
+    public static function createAdminRequest($dataArray)
+    {
+        $sql = "INSERT INTO admin_requests (username, password) VALUES (:username, :password)";
+        $stmt = Database::db()->prepare($sql);
+        $stmt->bindParam(":username", $dataArray["username"]);
+        $stmt->bindParam(":password", password_hash($dataArray["password"], PASSWORD_DEFAULT));
+
+    }
+
+    public static function removeUser($userName)
+    {
+        QueryBuilder::getInstance()
+            ->table("users")
+            ->remove(["username" => $userName]);
+    }
+
     /**
      * @param $username
      *
@@ -66,10 +82,21 @@ class User
     {
         $sql = "SELECT role_name FROM user_roles
                 LEFT JOIN roles r on user_roles.role_id = r.id
-                WHERE user_id = 1";
+                WHERE user_id = $this->id";
 
         $roles = Database::db()->query($sql)->fetchAll(PDO::FETCH_COLUMN);
 
         return new RoleCollection($this, $roles);
+    }
+
+    public function teams()
+    {
+        $sql = "SELECT team_name FROM team_members
+                LEFT JOIN teams t on team_members.team_id = t.id
+                WHERE user_id = $this->id";
+
+        $groups = Database::db()->query($sql)->fetchAll(PDO::FETCH_COLUMN);
+
+        return new GroupCollection($this, $groups);
     }
 }
