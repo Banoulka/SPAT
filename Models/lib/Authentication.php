@@ -44,10 +44,14 @@ class Authentication {
 
     public static function isRole($roleName)
     {
-        // Get role name,
-        // Get role ID
-        // Check against user roles
-        return true;
+        $roles = Authentication::User()->getRoles();
+
+        return in_array(ucwords($roleName), $roles);
+    }
+
+    public static function isAdmin()
+    {
+        return Authentication::isRole("Admin");
     }
 
     public static function isLoggedIn()
