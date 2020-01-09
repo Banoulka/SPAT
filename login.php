@@ -6,19 +6,23 @@ spl_autoload_register(function ($className) {
     require_once "Models/lib/$className.php";
 });
 
-$errors = [];
+if (Authentication::isLoggedIn()) {
+    Route::redirect("index.php");
+} else {
+    $errors = [];
 
-if (isset($_POST["submit"])) {
-    $formData = [
-        "username" => htmlentities($_POST["username"]),
-        "password" => htmlentities($_POST["password"]),
-    ];
+    if (isset($_POST["submit"])) {
+        $formData = [
+            "username" => htmlentities($_POST["username"]),
+            "password" => htmlentities($_POST["password"]),
+        ];
 
-    $errors = Authentication::validateAndLoginUser($formData["username"], $formData["password"]);
+        $errors = Authentication::validateAndLoginUser($formData["username"], $formData["password"]);
 
-    if (!$errors) {
-        // redirect somewhere
+        if (!$errors) {
+            //TODO: redirect somewhere
+        }
     }
-}
 
-require_once "Views/login.phtml";
+    require_once "Views/login.phtml";
+}
