@@ -18,3 +18,6 @@ check the status of files
 push files to branch
 > git push origin {branch name}
 
+create new branch
+> git checkout -b {branch name}
+
