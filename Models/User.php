@@ -45,6 +45,15 @@ class User
         return $foundUser;
     }
 
+    public static function getAllusers()
+    {
+        $users = QueryBuilder::getInstance()
+                    ->table("users")
+                    ->fetchAs("User")
+                    ->getAll();
+        return $users;
+    }
+
     // Relationships
     public function getRoles()
     {
