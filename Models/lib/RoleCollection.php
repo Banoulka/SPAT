@@ -12,8 +12,28 @@ class RoleCollection
         $this->roles = $roles;
     }
 
-    public function __get($name)
+    public function list()
     {
         return $this->roles;
+    }
+
+    public function create($roleID)
+    {
+        QueryBuilder::getInstance()
+            ->table("user_roles")
+            ->insert([
+                "user_id" => $this->user->id(),
+                "role_id" => $roleID
+            ]);
+    }
+
+    public function remove($roleID)
+    {
+        QueryBuilder::getInstance()
+            ->table("user_roles")
+            ->remove([
+                "user_id" => $this->user->id(),
+                "role_id" => $roleID
+            ]);
     }
 }

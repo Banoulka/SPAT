@@ -49,6 +49,13 @@ class QueryBuilder
 
         $this->resetData();
     }
+    public function remove($keyValueArr)
+    {
+        $this->keyValueArr = $keyValueArr;
+        $stmt = $this->prepareDelete();
+        $stmt->execute();
+        $this->resetData();
+    }
     public function where($colName, $value)
     {
         $this->keyValueArr[$colName] = $value;
@@ -118,6 +125,23 @@ class QueryBuilder
             $lastKey == $key ?: $sql .= " ,";
         }
         $sql .= ");";
+
+        $stmt = self::db()->prepare($sql);
+        return $stmt;
+    }
+    public function prepareDelete()
+    {
+        $tableName = $this->tableName;
+
+        $sql = "DELETE FROM $tableName WHERE ";
+
+        $keys = array_keys($this->keyValueArr);
+        $lastKey = end($keys);
+
+        foreach ($this->keyValueArr as $key => $value) {
+            $sql .= "$key = \"$value\"";
+            $lastKey == $key ?: $sql .= " AND ";
+        }
 
         $stmt = self::db()->prepare($sql);
         return $stmt;
