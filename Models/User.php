@@ -45,6 +45,9 @@ class User
         return $foundUser;
     }
 
+    /**
+     * @return User[]
+     */
     public static function getAllusers()
     {
         $users = QueryBuilder::getInstance()
