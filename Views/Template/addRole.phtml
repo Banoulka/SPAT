@@ -1,6 +1,15 @@
 
 
 <select>
+    <?php
+    $users = User::getAllusers();
+
+    while($users) {
+        $value.='<option value="'.$users['username'].'">';
+    }
+    ?>
+
+
     <option value="volvo">Volvo</option>
     <option value="saab">Saab</option>
     <option value="opel">Opel</option>
@@ -14,4 +23,7 @@
     <option value="Role 4">Role 4</option>
 </select>
 
-<input type="submit">Submit Role<
+<input type="submit">
+
+<!-- on submit insert role value into user through the db -->
+
