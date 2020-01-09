@@ -5,7 +5,7 @@
         <div class="col-md-12">
             <div class="navigation">
                 <a href="adminDashboard.php?tab=addRole">Add Role</a>
-                <a href="adminDashboard.php?tab=addUser">Add User</a>
+                <a href="adminDashboard.php?tab=addUser">New User</a>
             </div>
         </div>
     </div>
@@ -15,11 +15,20 @@
                 case "addRole":
                     require_once "Template/addRole.phtml";
                     break;
+                case "newUser":
+                    require_once "Template/newUser.phtml";
+                    break;
+                case "AddTeam":
+                    require_once "Template/addTeam.phtml";
+                    break;
+                case "checkSignup":
+                    require_once "Template/checkSignup.phtml";
+                    break;
             } ?>
         </div>
     </div>
 </div>
-    <h5>Index Page View</h5>
+    <h5>Admin Dashboard </h5>
 
 </div>
 <?php require_once "Template/footer.phtml" ?>

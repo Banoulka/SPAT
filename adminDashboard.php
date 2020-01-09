@@ -20,7 +20,6 @@ if (Authentication::isAdmin()) {
     if (isset($_GET["tab"])) {
         $page = $_GET["tab"];
     }
-
     require_once "Views/adminDashboard.phtml";
 } else {
     //TODO: Require the authorsiation error page
