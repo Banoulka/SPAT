@@ -3,24 +3,21 @@
 <select>
     <?php
     $users = User::getAllusers();
-
-    while($users) {
-        $value.='<option value="'.$users['username'].'">';
-    }
     ?>
 
-
-    <option value="volvo">Volvo</option>
-    <option value="saab">Saab</option>
-    <option value="opel">Opel</option>
-    <option value="audi">Audi</option>
+    <?php foreach($users as $user) : ?>
+        <option value="<?= $user->username() ?>"><?= $user->username() ?></option>
+    <?php endforeach; ?>
 </select>
 
 <select>
-    <option value="Role 1">Role 1</option>
-    <option value="Role 2">Role 2</option>
-    <option value="Role 3">Role 3</option>
-    <option value="Role 4">Role 4</option>
+    <?php
+    $role = Role::allRoles();
+    ?>
+
+    <?php foreach ($role as $roles) : ?>
+        <option value="<?= $roles->role_name() ?>"><?= $roles->role_name() ?></option>
+    <?php endforeach; ?>
 </select>
 
 <input type="submit">
