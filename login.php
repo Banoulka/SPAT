@@ -1,5 +1,4 @@
 <?php
-
 // Bootstrap
 session_start();
 spl_autoload_register(function ($className) {
@@ -21,6 +20,7 @@ if (Authentication::isLoggedIn()) {
 
         if (!$errors) {
             //TODO: redirect somewhere
+            Route::redirect("adminDashboard.php");
         }
     }
 
