@@ -19,7 +19,7 @@ if (Authentication::isAdmin()) {
         $page = $_GET["tab"];
     }
 
-    var_dump(Authentication::User()->roles());
+    //var_dump(Authentication::User()->roles());
 
     require_once "Views/adminDashboard.phtml";
 } else {
