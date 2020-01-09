@@ -5,21 +5,27 @@
         <div class="col-md-12">
             <div class="navigation">
                 <a href="adminDashboard.php?tab=addRole">Add Role</a>
-                <a href="adminDashboard.php?tab=addUser">Add User</a>
+                <a href="adminDashboard.php?tab=NewUser">New User</a>
             </div>
         </div>
     </div>
     <div class="row">
         <div class="col-md-12">
             <?php switch ($page) {
-                case "addRole":
+                case "AddRole":
                     require_once "Template/addRole.phtml";
+                    break;
+                case "NewUser":
+                    require_once "Template/newUser.phtml";
                     break;
             } ?>
         </div>
     </div>
 </div>
+
     <h5>Index Page View</h5>
 
 </div>
 <?php require_once "Template/footer.phtml" ?>
+
+
