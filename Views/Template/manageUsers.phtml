@@ -46,11 +46,11 @@
 
         <select>
             <?php
-            $role = Role::allRoles();
+            $roles = Role::allRoles();
             ?>
 
-            <?php foreach ($role as $roles) : ?>
-                <option value="<?= $roles->role_name() ?>"><?= $roles->role_name() ?></option>
+            <?php foreach ($roles as $role) : ?>
+                <option value="<?= $role->role_name ?>"><?= $role->role_name ?></option>
             <?php endforeach; ?>
         </select>
 
