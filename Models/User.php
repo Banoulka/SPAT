@@ -16,7 +16,7 @@ class User
         $sql = "INSERT INTO users (username, password) VALUES (:username, :password)";
         $stmt = Database::db()->prepare($sql);
         $stmt->bindParam(":username", $dataArray["username"]);
-        $stmt->bindParam(":username", password_hash($dataArray["password"], PASSWORD_DEFAULT));
+        $stmt->bindParam(":password", password_hash($dataArray["password"], PASSWORD_DEFAULT));
         if ($stmt->execute()) {
             $id = Database::getInstance()->getdbConnection()->lastInsertId();
 

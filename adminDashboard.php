@@ -6,6 +6,8 @@ spl_autoload_register(function ($className) {
     require_once "Models/lib/$className.php";
 });
 
+require_once "Models/Role.php";
+
 //var_dump(Authentication::isAdmin());
 //var_dump(User::getAllusers());
 
@@ -19,7 +21,7 @@ if (Authentication::isAdmin()) {
         $page = $_GET["tab"];
     }
 
-    var_dump(Authentication::User()->roles());
+    var_dump(Role::allRoles());
 
     require_once "Views/adminDashboard.phtml";
 } else {
