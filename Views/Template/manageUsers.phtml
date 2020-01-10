@@ -36,9 +36,7 @@
             <th scope="row"><?= $index+1?></th>
             <td><?= $user->username() ?></td>
             <td>
-                <?php foreach ($user->roles()->list() as $role) : ?>
-                    <span><?= $role ?>, </span>
-                <?php endforeach; ?>
+                <?= $user->role() ?>
             </td>
             <td>
                 <?php foreach ($user->teams() as $team) : ?>
