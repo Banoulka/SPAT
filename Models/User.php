@@ -77,24 +77,18 @@ class User
 
     // Relationships
 
-    /**
-     * @return RoleCollection
-     */
-    public function roles()
+    public function role()
     {
         $sql = "SELECT role_name FROM user_roles
                 LEFT JOIN roles r on user_roles.role_id = r.id
                 WHERE user_id = $this->id";
-
-        $roles = Database::db()->query($sql)->fetchAll(PDO::FETCH_COLUMN);
-
-        return new RoleCollection($this, $roles);
+        return Database::db()->query($sql)->fetch(PDO::FETCH_COLUMN);
     }
 
     public function isRole($roleName)
     {
-        $roles = $this->roles()->list();
-        return in_array(ucwords($roleName), $roles);
+        $role = $this->role();
+        return $role === $roleName;
     }
 
     public function isAdmin()
