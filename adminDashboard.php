@@ -7,22 +7,38 @@ spl_autoload_register(function ($className) {
 });
 
 require_once "Models/Role.php";
+require_once "Models/Group.php";
 
-//var_dump(Authentication::isAdmin());
-//var_dump(User::getAllusers());
-
-if (Authentication::isAdmin()) {
+if (Authentication::isLoggedIn() && Authentication::User()->isAdmin()) {
 
     $users = User::getAllusers();
 
-    $page = "addRole";
-
+    $page = "manageRoles";
     if (isset($_GET["tab"])) {
         $page = $_GET["tab"];
     }
 
+    if (isset($_POST["createGroup"])) {
+        Group::addGroup(htmlentities($_POST["group_name"]));
+    } elseif (isset($_POST["createRole"])) {
+        Role::addRole(htmlentities($_POST["role_name"]));
+    } elseif (isset($_POST["deleteGroup"]) && isset($_POST["groupID"])) {
+        Group::removegroup($_POST["groupID"]);
+    } elseif (isset($_POST["deleteRole"]) && isset($_POST["roleID"])) {
+        Role::removeRole($_POST["roleID"]);
+    } elseif (isset($_POST["addUser"])) {
+        $formData = [
+            "username" => htmlentities($_POST["username"]),
+            "password" => htmlentities($_POST["password"]),
+        ];
+
+        //TODO:: Validation
+
+        User::createUser($formData);
+        $message = "User created successfully";
+    }
+
     require_once "Views/adminDashboard.phtml";
 } else {
-    //TODO: Require the authorsiation error page
-    echo "no access";
+    require_once "Views/errorPage.phtml";
 }

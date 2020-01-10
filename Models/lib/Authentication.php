@@ -42,19 +42,6 @@ class Authentication {
         return $errors;
     }
 
-    public static function isRole($roleName)
-    {
-        $roles = Authentication::User()->roles();
-
-        return in_array(ucwords($roleName), $roles);
-    }
-
-    public static function isAdmin()
-    {
-//        return Authentication::isRole("Admin");
-        return true;
-    }
-
     public static function isLoggedIn()
     {
         return Session::isSet(Authentication::$sessionID);

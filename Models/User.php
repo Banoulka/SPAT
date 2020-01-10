@@ -12,11 +12,13 @@ class User
 
     public static function createUser($dataArray)
     {
+        $password = password_hash($dataArray["password"], PASSWORD_DEFAULT);
+
         // Setup user SQL
         $sql = "INSERT INTO users (username, password) VALUES (:username, :password)";
         $stmt = Database::db()->prepare($sql);
         $stmt->bindParam(":username", $dataArray["username"]);
-        $stmt->bindParam(":password", password_hash($dataArray["password"], PASSWORD_DEFAULT));
+        $stmt->bindParam(":password", $password);
         if ($stmt->execute()) {
             $id = Database::getInstance()->getdbConnection()->lastInsertId();
 
@@ -89,10 +91,21 @@ class User
         return new RoleCollection($this, $roles);
     }
 
+    public function isRole($roleName)
+    {
+        $roles = $this->roles()->list();
+        return in_array(ucwords($roleName), $roles);
+    }
+
+    public function isAdmin()
+    {
+        return $this->isRole("Admin");
+    }
+
     public function teams()
     {
-        $sql = "SELECT team_name FROM team_members
-                LEFT JOIN teams t on team_members.team_id = t.id
+        $sql = "SELECT group_name FROM group_members
+                LEFT JOIN groups t on group_members.team_id = t.id
                 WHERE user_id = $this->id";
 
         $groups = Database::db()->query($sql)->fetchAll(PDO::FETCH_COLUMN);

@@ -7,7 +7,10 @@ class Role
     {
         QueryBuilder::getInstance()
             ->table("roles")
-            ->insert(["role_name" => $roleName]);
+            ->insert([
+                "role_name" => $roleName,
+                "editable" => true
+            ]);
     }
 
     public static function removeRole($roleID)
