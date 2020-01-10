@@ -19,12 +19,37 @@
 <!-- on submit insert role value into user through the db -->
 
 <h5>Current Users</h5>
-<?php foreach (User::getAllusers() as $user) : ?>
-    <div class="group">
-        <p><?= $user->username()?>
-            <?= $user->id() === Authentication::User()->id() ? "<strong> (you) </strong>" : "" ?>
-        </p>
-        <button class="ml-auto">edit button</button>
-    </div>
-<?php endforeach; ?>
+
+<table class="table">
+    <thead>
+    <tr>
+        <th scope="col">#</th>
+        <th scope="col">Username</th>
+        <th scope="col">Roles</th>
+        <th scope="col">Groups</th>
+        <th scope="col">Manage</th>
+    </tr>
+    </thead>
+    <tbody>
+    <?php foreach (User::getAllusers() as $index => $user) : ?>
+        <tr>
+            <th scope="row"><?= $index+1?></th>
+            <td><?= $user->username() ?></td>
+            <td>
+                <?php foreach ($user->roles()->list() as $role) : ?>
+                    <span><?= $role ?>, </span>
+                <?php endforeach; ?>
+            </td>
+            <td>
+                <?php foreach ($user->teams() as $team) : ?>
+                    <span><?= $team ?>, </span>
+                <?php endforeach; ?>
+            </td>
+            <td>
+                <button class="ml-auto">edit button</button>
+            </td>
+        </tr>
+    <?php endforeach; ?>
+    </tbody>
+</table>
 
