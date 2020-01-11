@@ -41,3 +41,12 @@
     text-decoration: underline;
     color: #4e555b;
 }
+
+
+.button1 {
+    width: 250px;
+    height: 200px;
+    display: inline-block;
+    margin-top: 2%;
+    margin-right: 2%;
+}
