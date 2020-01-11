@@ -33,7 +33,6 @@ if (Authentication::isLoggedIn() && Authentication::User()->isAdmin()) {
         ];
 
         //TODO:: Validation
-
         User::createUser($formData);
         $message = "User created successfully";
     }

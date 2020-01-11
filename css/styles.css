@@ -30,3 +30,14 @@
 .group p:before {
     content: " - ";
 }
+
+.new-group {
+    cursor: pointer;
+    color: #414141;
+    font-size: 0.8rem;
+}
+
+.new-group:hover {
+    text-decoration: underline;
+    color: #4e555b;
+}
