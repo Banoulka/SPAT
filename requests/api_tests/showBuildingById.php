@@ -8,7 +8,8 @@ spl_autoload_register(function ($className) {
 });
 
 // TODO: Do auth checks
-$data = API::getBuildingByID(3);
+
+$data = API::getBuildingByID("5e1605a51c7a63001279fb11");
 echo json_encode($data);
 
 

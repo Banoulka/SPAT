@@ -8,7 +8,10 @@ spl_autoload_register(function ($className) {
 });
 
 // TODO: Do auth checks
-$data = API::deleteInfrastructure(1); //$id??
+$allInfra = API::getAllInfrastructure();
+$rand = rand(0, count($allUtilities)-1);
+$uteToDelete = $allInfra[$rand];
+$data = API::deleteInfrastructure($uteToDelete->_id); //$id??
 echo json_encode($data);
 
 

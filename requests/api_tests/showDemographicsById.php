@@ -8,7 +8,7 @@ spl_autoload_register(function ($className) {
 });
 
 // TODO: Do auth checks
-$data = API::getDemographicsById(7);
+$data = API::getDemographicsById("5e16014d1c7a63001279fb09");
 echo json_encode($data);
 
 

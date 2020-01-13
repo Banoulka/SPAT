@@ -21,7 +21,7 @@ $data = [
     "_id" => "5e15eab306f6e7159f259e5c",
 ];
 
-API::createBuilding($data);
+API::createDemographics($data);
 $data = API::createDemographics($data); //$DataArr??
 echo json_encode($data);
 

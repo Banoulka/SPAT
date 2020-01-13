@@ -1,18 +1,18 @@
-<?php
+    <?php
 
-// Bootstrap
-header("Content-Type: application/json");
-session_start();
-spl_autoload_register(function ($className) {
-    require_once "../../Models/lib/$className.php";
-});
+    // Bootstrap
+    header("Content-Type: application/json");
+    session_start();
+    spl_autoload_register(function ($className) {
+        require_once "../../Models/lib/$className.php";
+    });
 
-// TODO: Do auth checks
-$data = API::getBuildingByID(3);
-echo json_encode($data);
+    // TODO: Do auth checks
+    $data = API::getInfrastructureById("5e1c87441fb6ab001271a838");
+    echo json_encode($data);
 
 
-//$data = new stdClass();
-//$data->error = "You do not have authorisation for this";
-//echo json_encode($data);
+    //$data = new stdClass();
+    //$data->error = "You do not have authorisation for this";
+    //echo json_encode($data);
 
