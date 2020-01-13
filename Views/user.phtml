@@ -40,6 +40,22 @@
     });
 </script>
 
+<script>
+
+    // Show building data
+    document.getElementById("showInfrastructureData").addEventListener("click", async () => {
+        document.getElementById("output").innerHTML = "<div class=\"spinner-border text-success\" style=\"width: 4em; height: 4em;\" role=\"status\">\n" +
+            "                    <span class=\"sr-only\">Loading...</span>\n" +
+            "                </div>";
+
+        // TODO: Ajax request to our server
+        let promise = await fetch("requests/api_tests/showInfrastructureData.php");
+        let response = await promise.json();
+
+        document.getElementById("output").innerHTML = JSON.stringify(response, undefined, 1);
+    });
+</script>
+
 
 
 
