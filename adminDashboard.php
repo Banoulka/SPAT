@@ -12,6 +12,18 @@ require_once "Models/User.php";
 
 if (Authentication::isLoggedIn() && Authentication::User()->isAdmin()) {
 
+    if (isset($_POST["uid"])) {
+        $user = User::findByID($_POST["uid"]);
+        $data = [
+            "username" => htmlentities($_POST["username"]),
+            "userID" => htmlentities($_POST["uid"]),
+            "roleID" => htmlentities($_POST["role"]),
+            "groupIDs" => htmlentities($_POST["gids"])
+        ];
+        $user->updateDetails($data);
+        Route::redirect("adminDashboard.php?tab=manageUsers");
+    }
+
     $users = User::getAllusers();
 
     $page = "manageRoles";

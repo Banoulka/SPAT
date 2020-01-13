@@ -121,4 +121,37 @@ class User
 
         return new GroupCollection($this, $groups);
     }
+
+    public function updateDetails($dataArr)
+    {
+        $username = $dataArr["username"];
+        $userID = $dataArr["userID"];
+        $roleID = $dataArr["roleID"];
+        $groupIDS = explode(",", $dataArr["groupIDs"]);
+
+        var_dump($username);
+        var_dump($userID);
+        var_dump($roleID);
+        var_dump($groupIDS);
+//        die();
+
+        // Update username
+        $sql = "UPDATE users SET username = \"$username\" WHERE id = $userID";
+        Database::db()->exec($sql);
+
+        // Update Role
+        $sql = "UPDATE user_roles SET role_id = $roleID WHERE user_id = $userID";
+        Database::db()->exec($sql);
+
+        // Update Groups
+        $sql = "DELETE FROM group_members WHERE user_id = $userID";
+        Database::db()->exec($sql);
+
+        $sql = "";
+        foreach ($groupIDS as $id) {
+            $sql .= "INSERT INTO group_members VALUES ($userID, $id);";
+        }
+        Database::db()->exec($sql);
+
+    }
 }

@@ -64,10 +64,11 @@
                 <button class="ml-auto btn btn-sm btn-dark del-btn" id="save">Save</button>
             </td>
         </tr>
-        <form action="#" method="post" id="change">
+        <form action="<?= $_SERVER["PHP_SELF"] ?>" method="post" id="change">
             <input type="hidden" name="username" id="u-name">
             <input type="hidden" name="role" id="role">
             <input type="hidden" name="gids" id="gids">
+            <input type="hidden" name="uid" id="uid">
         </form>
         <?php else : ?>
         <tr id="show-<?= $user->id() ?>" class="table-row show">
@@ -106,6 +107,7 @@
         let dropDownButton = document.getElementById("new-group-button");
         let ddOptions = document.getElementsByClassName("group-option");
         let groupDropdown = document.getElementsByClassName("new-group-dropdown")[0];
+        let userID = <?= $_GET["e-id"];  ?>;
 
         <?php $user = User::findByID($_GET["e-id"])  ?>
         let groupIDs = [];
@@ -161,9 +163,10 @@
             let username = document.getElementById("new-username").value;
 
             document.getElementById("u-name").value = username;
+            document.getElementById("uid").value = userID;
             document.getElementById("role").value = roleID;
             document.getElementById("gids").value = groupIDs;
-            // document.getElementById("change").submit();
+            document.getElementById("change").submit();
         });
 
     <?php endif; ?>
