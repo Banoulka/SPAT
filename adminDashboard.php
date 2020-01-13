@@ -21,7 +21,7 @@ if (Authentication::isLoggedIn() && Authentication::User()->isAdmin()) {
             "groupIDs" => htmlentities($_POST["gids"])
         ];
         $user->updateDetails($data);
-        Route::redirect("adminDashboard.php?tab=manageUsers");
+        Route::redirect("adminDashboard.php?tab=manageUsers#users");
     }
 
     $users = User::getAllusers();
