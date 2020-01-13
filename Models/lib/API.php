@@ -151,7 +151,7 @@ class API
             CURLOPT_CUSTOMREQUEST => "DELETE",
             ];
         $res = self::setupCurl("http://3.11.87.121/api/v1/utilities/$id", $options);
-        return $res->utilities;
+        return $res;
     }
 
     /**

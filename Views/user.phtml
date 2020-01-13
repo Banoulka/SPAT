@@ -165,7 +165,7 @@
             "                </div>";
 
         // TODO: Ajax request to our server
-        let promise = await fetch("requests/api_tests/deleteUtilties.php");
+        let promise = await fetch("requests/api_tests/deleteUtilities.php");
         let response = await promise.json();
 
         document.getElementById("output").innerHTML = JSON.stringify(response, undefined, 1);
