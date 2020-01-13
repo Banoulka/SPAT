@@ -49,7 +49,7 @@ class API
        return $res->infrastructure;
     }
 
-    public static function getInfrastructureByID($id)
+    public static function getInfrastructureById($id)
     {
         $res = self::setupCurl("http://3.11.87.121/api/v1/buildings/$id");
         return $res->infrastructure;

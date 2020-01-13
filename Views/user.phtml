@@ -165,7 +165,7 @@
             "                </div>";
 
         // TODO: Ajax request to our server
-        let promise = await fetch("requests/api_tests/deleteUtilties.php");
+        let promise = await fetch("requests/api_tests/deleteUtilities.php");
         let response = await promise.json();
 
         document.getElementById("output").innerHTML = JSON.stringify(response, undefined, 1);
@@ -192,7 +192,7 @@
 
 <script>
 
-    // Show Infrastructure data
+    // Show Infrastructure data by id
     document.getElementById("showInfrastructureById").addEventListener("click", async () => {
         document.getElementById("output").innerHTML = "<div class=\"spinner-border text-success\" style=\"width: 4em; height: 4em;\" role=\"status\">\n" +
             "                    <span class=\"sr-only\">Loading...</span>\n" +
@@ -208,7 +208,7 @@
 
 <script>
 
-    // Show Infrastructure data
+    // create new infrastructure
     document.getElementById("createInfrastructure").addEventListener("click", async () => {
         document.getElementById("output").innerHTML = "<div class=\"spinner-border text-success\" style=\"width: 4em; height: 4em;\" role=\"status\">\n" +
             "                    <span class=\"sr-only\">Loading...</span>\n" +
@@ -223,7 +223,7 @@
 </script>
 
 <script>
-    // Show Infrastructure data
+    // delete infrastructure
     document.getElementById("deleteInfrastructure").addEventListener("click", async () => {
         document.getElementById("output").innerHTML = "<div class=\"spinner-border text-success\" style=\"width: 4em; height: 4em;\" role=\"status\">\n" +
             "                    <span class=\"sr-only\">Loading...</span>\n" +
@@ -254,7 +254,7 @@
 </script>
 
 <script>
-    // Show demographic data
+    // Show demographic data by id
     document.getElementById("showDemographicsById").addEventListener("click", async () => {
         document.getElementById("output").innerHTML = "<div class=\"spinner-border text-success\" style=\"width: 4em; height: 4em;\" role=\"status\">\n" +
             "                    <span class=\"sr-only\">Loading...</span>\n" +
@@ -269,7 +269,7 @@
 </script>
 
 <script>
-    // Show demographic data
+    // create demographic data
     document.getElementById("createDemographics").addEventListener("click", async () => {
         document.getElementById("output").innerHTML = "<div class=\"spinner-border text-success\" style=\"width: 4em; height: 4em;\" role=\"status\">\n" +
             "                    <span class=\"sr-only\">Loading...</span>\n" +
@@ -284,7 +284,7 @@
 </script>
 
 <script>
-    // Show demographic data
+    // delete demographic data
     document.getElementById("deleteDemographics").addEventListener("click", async () => {
         document.getElementById("output").innerHTML = "<div class=\"spinner-border text-success\" style=\"width: 4em; height: 4em;\" role=\"status\">\n" +
             "                    <span class=\"sr-only\">Loading...</span>\n" +

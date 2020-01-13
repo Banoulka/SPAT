@@ -20,7 +20,7 @@ $data = [
 ];
 
 API::createInfrastructure($data);
-$data = API::createUtilities($data); //$DataArr??
+$data = API::createInfrastructure(); //$DataArr??
 echo json_encode($data);
 
 //$data = new stdClass();

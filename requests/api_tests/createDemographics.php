@@ -14,10 +14,10 @@ $data = [
     "demographic",
     "__v" => 0,
     "postcode" => "M1",
-    "totalHealthNeeds" => 1500,
-    "totalMobilityNeeds" => 5000,
-    "totalElderly" => 5000,
-    "totalPopulation" => 12000,
+    "totalHealthNeeds" => 100,
+    "totalMobilityNeeds" => 50600,
+    "totalElderly" => 50090,
+    "totalPopulation" => 182000,
     "_id" => "5e15eab306f6e7159f259e5c",
 ];
 
