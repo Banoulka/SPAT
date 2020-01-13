@@ -79,15 +79,15 @@ class User
 
     public function role()
     {
-        $sql = "SELECT role_name FROM user_roles
+        $sql = "SELECT role_name, id FROM user_roles
                 LEFT JOIN roles r on user_roles.role_id = r.id
                 WHERE user_id = $this->id";
-        return Database::db()->query($sql)->fetch(PDO::FETCH_COLUMN);
+        return Database::db()->query($sql)->fetch(PDO::FETCH_OBJ);
     }
 
     public function isRole($roleName)
     {
-        $role = $this->role();
+        $role = $this->role()->role_name;
         return $role === $roleName;
     }
 

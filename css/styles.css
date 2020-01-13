@@ -31,6 +31,18 @@
     content: " - ";
 }
 
+.new-group {
+    cursor: pointer;
+    color: #414141;
+    font-size: 0.8rem;
+}
+
+.new-group:hover {
+    text-decoration: underline;
+    color: #4e555b;
+}
+
+
 .button1 {
     width: 250px;
     height: 200px;
@@ -38,4 +50,3 @@
     margin-top: 2%;
     margin-right: 2%;
 }
-

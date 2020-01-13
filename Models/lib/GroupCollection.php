@@ -17,6 +17,28 @@ class GroupCollection
         return $this->teams;
     }
 
+    public function setTeam($teamIDArr)
+    {
+        // Remove all the groups previously
+        QueryBuilder::getInstance()
+            ->table("team_members")
+            ->remove([
+                "user_id" => $this->user->id()
+            ]);
+
+        // Add each group to the database
+        foreach ($teamIDArr as $teamID)
+        {
+
+            QueryBuilder::getInstance()
+                ->table("team_members")
+                ->insert([
+                    "user_id" => $this->user->id(),
+                    "team_id" => $teamID
+                ]);
+        }
+    }
+
     public function addTeam($teamID)
     {
         QueryBuilder::getInstance()

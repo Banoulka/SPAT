@@ -33,22 +33,46 @@
     </thead>
     <tbody>
     <?php foreach (User::getAllusers() as $index => $user) : ?>
-        <tr>
+        <tr id="show-<?= $user->id() ?>" class="table-row show">
             <th scope="row"><?= $index+1?></th>
-            <td><?= $user->username() ?></td>
-            <td>
-                <?= $user->role() ?>
+            <td class="u-name">
+                <span><?= $user->username() ?></span>
             </td>
-            <td>
+            <td class="roles">
+                <span><?= $user->role()->role_name ?></span>
+            </td>
+            <td class="groups">
                 <?php foreach ($user->teams() as $team) : ?>
                     <span><?= $team ?>, </span>
                 <?php endforeach; ?>
+                <p class="m-0 new-group"><i class="fas fa-plus-square mr-2 text-success"></i>Add a new group...</p>
             </td>
-            <td>
-                <button class="ml-auto">edit button</button>
+            <td class="buttons">
+                <button class="ml-auto btn btn-sm btn-success edit-btn" id="<?= $user->id() ?>">Edit</button>
+                <button class="ml-auto btn btn-sm btn-danger del-btn" id="del-<?= $user->id() ?>">Delete</button>
             </td>
         </tr>
     <?php endforeach; ?>
     </tbody>
 </table>
 
+<form action="#" class="hide">
+    <input type="hidden" value="" id="username-change">
+</form>
+
+<script>
+    let editButtons = document.getElementsByClassName("edit-btn");
+    let deleteButtons = document.getElementsByClassName("del-btn");
+    let roles = <?= json_encode(Role::allRoles()) ?>;
+    let groups = <?= json_encode(Group::allgroups()) ?>;
+
+    for (let button of deleteButtons) {
+        button.addEventListener("click", function() {
+           let userID = this.id.substr(4);
+           document.getElementById("show-" + userID).remove();
+
+           //TODO: Send ajax request to delete user
+        });
+    }
+
+</script>
