@@ -67,6 +67,7 @@
         <form action="#" method="post" id="change">
             <input type="hidden" name="username" id="u-name">
             <input type="hidden" name="role" id="role">
+            <input type="hidden" name="gids" id="gids">
         </form>
         <?php else : ?>
         <tr id="show-<?= $user->id() ?>" class="table-row show">
@@ -155,6 +156,15 @@
             groupDropdown.classList.add("hidden");
         });
 
-        document.
+        document.getElementById("save").addEventListener("click", function() {
+            let roleID = document.getElementById("new-role").value;
+            let username = document.getElementById("new-username").value;
+
+            document.getElementById("u-name").value = username;
+            document.getElementById("role").value = roleID;
+            document.getElementById("gids").value = groupIDs;
+            // document.getElementById("change").submit();
+        });
+
     <?php endif; ?>
 </script>
