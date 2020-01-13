@@ -8,6 +8,7 @@ spl_autoload_register(function ($className) {
 
 require_once "Models/Role.php";
 require_once "Models/Group.php";
+require_once "Models/User.php";
 
 if (Authentication::isLoggedIn() && Authentication::User()->isAdmin()) {
 

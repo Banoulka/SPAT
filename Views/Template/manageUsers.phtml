@@ -38,19 +38,26 @@
         <tr>
             <th scope="row"><?= $index+1?></th>
             <td class="u-name">
-                <input type="text" id="new-username" class="form-control" name="username" value="<?= $user->username()?>" placeholder="<?= $user->username()?>">
+                <input type="text" id="new-username" class="form-control" value="<?= $user->username()?>" placeholder="<?= $user->username()?>">
             </td>
             <td class="roles">
-                <select name="role" id="new-role" class="role-select form-control">
+                <select id="new-role" class="role-select form-control">
                     <?php foreach (Role::allRoles() as $role) : ?>
                         <option value="<?= $role->id ?>" <?= $role->id == $user->role()->id ? "selected class='selected'" : "" ?>><?= $role->role_name?> <?= $role->id == $user->role()->id ? " (current) " : "" ?></option>
                     <?php endforeach; ?>
                 </select>
             </td>
             <td class="groups">
-                <p class="m-0 new-group"><i class="fas fa-plus-square mr-2 text-success"></i>Add a new group...</p>
-                <div class="new-group">
-
+                <div id="edit-groups">
+                    <?php foreach ($user->teams()->list() as $team) : ?>
+                        <span id="id-<?= $team->id ?>" class="selected-groups"><?= $team->group_name ?><i class="fas fa-minus-square text-danger remove"></i></span>
+                    <?php endforeach; ?>
+                </div>
+                <p class="m-0 new-group" id="new-group-button"><i class="fas fa-plus-square mr-2 text-success"></i>Add a new group...</p>
+                <div class="new-group-dropdown hidden">
+                    <?php foreach (Group::allgroups() as $group) : ?>
+                        <div class="group-option" id="gid-<?= $group->id ?>"><?= $group->group_name ?></div>
+                    <?php endforeach; ?>
                 </div>
             </td>
             <td class="buttons">
@@ -58,7 +65,8 @@
             </td>
         </tr>
         <form action="#" method="post" id="change">
-
+            <input type="hidden" name="username" id="u-name">
+            <input type="hidden" name="role" id="role">
         </form>
         <?php else : ?>
         <tr id="show-<?= $user->id() ?>" class="table-row show">
@@ -73,8 +81,8 @@
                 <span><?= $user->role()->role_name ?></span>
             </td>
             <td class="groups">
-                <?php foreach ($user->teams() as $team) : ?>
-                    <span><?= $team ?>, </span>
+                <?php foreach ($user->teams()->list() as $team) : ?>
+                    <span><?= $team->group_name ?></span>
                 <?php endforeach; ?>
             </td>
             <td class="buttons">
@@ -93,5 +101,60 @@
 </table>
 
 <script>
+    <?php if (isset($_GET["e-id"]) && User::findByID($_GET["e-id"] != null)) : ?>
+        let dropDownButton = document.getElementById("new-group-button");
+        let ddOptions = document.getElementsByClassName("group-option");
+        let groupDropdown = document.getElementsByClassName("new-group-dropdown")[0];
 
+        <?php $user = User::findByID($_GET["e-id"])  ?>
+        let groupIDs = [];
+        <?php foreach ($user->teams()->list() as $team) : ?>
+            groupIDs.push(<?= $team->id ?>);
+        <?php endforeach; ?>
+
+        dropDownButton.addEventListener("click", function(e) {
+            e.stopPropagation();
+            if (groupDropdown.classList.contains("hidden")) {
+                groupDropdown.classList.remove("hidden");
+            } else {
+                groupDropdown.classList.add("hidden");
+            }
+        });
+
+        for (let option of ddOptions) {
+            option.addEventListener("click", function(e) {
+                let gid = parseInt(this.id.substr(4).trim());
+                if (groupIDs.includes(gid)) {
+                    console.log("dont add");
+                }
+                else {
+                    groupIDs.push(gid);
+                    let span = document.createElement("span");
+                    span.innerHTML = this.textContent + "<i class=\"fas fa-minus-square text-danger remove\"></i>";
+                    span.classList.add("selected-groups");
+                    span.id = "id-" + gid;
+                    document.getElementById("edit-groups").appendChild(span);
+                    span.children[0].addEventListener("click", deleteGroup);
+                }
+            });
+        }
+
+        let removeButtons = document.getElementsByClassName("remove");
+
+        for (let remove of removeButtons) {
+            remove.addEventListener("click", deleteGroup);
+        }
+
+        function deleteGroup() {
+            let id = parseInt(this.parentElement.id.substr(3));
+            groupIDs.splice(groupIDs.indexOf(id), 1);
+            this.parentElement.remove();
+        }
+
+        document.addEventListener("click", function() {
+            groupDropdown.classList.add("hidden");
+        });
+
+        document.
+    <?php endif; ?>
 </script>
