@@ -141,7 +141,7 @@ class API
 
         $res = self::setupCurl("http://3.11.87.121/api/v1/utilities", $options);
 
-        return $res->utilities;
+        return $res;
 
     }
 

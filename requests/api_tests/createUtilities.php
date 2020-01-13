@@ -10,18 +10,16 @@ spl_autoload_register(function ($className) {
 // TODO: Do auth checks
 
 $data = [
-    "utility",
-    "__v" => 0,
     "postcode" => "M1",
     "name" => "Nukes",
-    "type" => "Nuclear",
-    "classification" => "dangerous af",
-    "_id" => "5e15ee9b665b2018d28f3c69",
+    "type" => "Electric",
+    "classification" => "Critical",
 ];
 
-API::createUtilities($data);
-$data = API::createUtilities($data); //$DataArr??
-echo json_encode($data);
+
+$res = API::createUtilities($data);
+
+echo json_encode($res);
 
 //$data = new stdClass();
 //$data->error = "You do not have authorisation for this";
