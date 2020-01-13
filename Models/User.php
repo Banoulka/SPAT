@@ -41,11 +41,19 @@ class User
 
     }
 
-    public static function removeUser($userName)
+    public function remove()
     {
         QueryBuilder::getInstance()
+            ->table("user_roles")
+            ->remove(["user_id" => $this->id]);
+
+        QueryBuilder::getInstance()
+            ->table("group_members")
+            ->remove(["user_id" => $this->id]);
+
+        QueryBuilder::getInstance()
             ->table("users")
-            ->remove(["username" => $userName]);
+            ->remove(["id" => $this->id]);
     }
 
     /**
