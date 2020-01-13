@@ -56,7 +56,7 @@
                         <span id="id-<?= $team->id ?>" class="selected-groups"><?= $team->group_name ?><i class="fas fa-minus-square text-danger remove"></i></span>
                     <?php endforeach; ?>
                 </div>
-                <p class="m-0 new-group" id="new-group-button"><i class="fas fa-plus-square mr-2 text-success"></i>Add a new group...</p>
+                <p class="m-0 new-group btn-success btn-sm" id="new-group-button"> Add a new group...</p>
                 <div class="new-group-dropdown hidden">
                     <?php foreach (Group::allgroups() as $group) : ?>
                         <div class="group-option" id="gid-<?= $group->id ?>"><?= $group->group_name ?></div>
