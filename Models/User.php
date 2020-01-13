@@ -64,6 +64,21 @@ class User
     }
 
     /**
+     * @param $id
+     *
+     * @return User
+     */
+    public static function findByID($id)
+    {
+        $foundUser = QueryBuilder::getInstance()
+            ->table("users")
+            ->where("id", $id)
+            ->fetchAs("User")
+            ->first();
+        return $foundUser;
+    }
+
+    /**
      * @return User[]
      */
     public static function getAllusers()
@@ -79,15 +94,15 @@ class User
 
     public function role()
     {
-        $sql = "SELECT role_name FROM user_roles
+        $sql = "SELECT role_name, id FROM user_roles
                 LEFT JOIN roles r on user_roles.role_id = r.id
                 WHERE user_id = $this->id";
-        return Database::db()->query($sql)->fetch(PDO::FETCH_COLUMN);
+        return Database::db()->query($sql)->fetch(PDO::FETCH_OBJ);
     }
 
     public function isRole($roleName)
     {
-        $role = $this->role();
+        $role = $this->role()->role_name;
         return $role === $roleName;
     }
 
@@ -98,11 +113,11 @@ class User
 
     public function teams()
     {
-        $sql = "SELECT group_name FROM group_members
-                LEFT JOIN groups t on group_members.team_id = t.id
+        $sql = "SELECT group_name, id FROM group_members
+                LEFT JOIN `groups` t on group_members.group_id = t.id
                 WHERE user_id = $this->id";
 
-        $groups = Database::db()->query($sql)->fetchAll(PDO::FETCH_COLUMN);
+        $groups = Database::db()->query($sql)->fetchAll(PDO::FETCH_OBJ);
 
         return new GroupCollection($this, $groups);
     }

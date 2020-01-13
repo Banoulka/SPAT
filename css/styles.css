@@ -31,11 +31,83 @@
     content: " - ";
 }
 
+.new-group {
+    cursor: pointer;
+    color: #414141;
+    font-size: 0.9rem;
+    padding-top: 0.6em;
+}
+
+.new-group:hover {
+    text-decoration: underline;
+    color: #4e555b;
+}
+
+
 .button1 {
     width: 250px;
     height: 200px;
     display: inline-block;
     margin-top: 2%;
     margin-right: 2%;
+}
+
+.selected {
+    font-weight: bold;
+    background-color: #495157;
+    color: white;
+}
+
+#users td {
+    padding: 0.3em 0.4em;
+}
+
+.groups {
+    position: relative;
+}
+
+.new-group-dropdown {
+    min-width: 200px;
+    min-height: 200px;
+    position: absolute;
+    top: -200px;
+    left: -40px;
+    background-color: rgb(241, 234, 241);
+    padding: 0.2em 0.4em;
+    border-radius: 10px;
+}
+
+.group-option {
+    cursor: pointer;
+    color: #2f2f2f;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0.3em;
+    border-radius: 10px;
+}
+
+.group-option:hover {
+    background-color: #d7d0d2;
+}
+
+.hidden {
+    display: none;
+}
+
+.groups span {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0 0.3em;
+}
+
+.groups span i {
+    margin-left: auto;
+}
+
+.groups span i:hover {
+    cursor: pointer;
+    color: #9c110c !important;
 }
 
