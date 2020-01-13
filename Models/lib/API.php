@@ -46,9 +46,10 @@ class API
     public static function getAllInfrastructure()
     {
        $res = self::setupCurl("http://3.11.87.121/api/v1/infrastructure");
+       return $res->infrastructure;
     }
 
-    public static function getInfrastructreByID($id)
+    public static function getInfrastructureByID($id)
     {
         $res = self::setupCurl("http://3.11.87.121/api/v1/buildings/$id");
         return $res->infrastructure;
@@ -80,7 +81,7 @@ class API
     }
 
     //demographics
-    public function getAllDemographics()
+    public static function getAllDemographics()
     {
         $res = self::setupCurl("http://3.11.87.121/api/v1/demographics");
         return $res->demographics;

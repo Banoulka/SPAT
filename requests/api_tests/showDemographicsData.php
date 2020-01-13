@@ -9,7 +9,7 @@ spl_autoload_register(function ($className) {
 });
 
 // TODO: Do auth checks
-$data = API::getAllInfrastructure();
+$data = API::getAllDemographics();
 echo json_encode($data);
 
 //$data = new stdClass();
