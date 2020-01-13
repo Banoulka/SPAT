@@ -17,7 +17,6 @@ if (Authentication::isLoggedIn() && Authentication::User()->isAdmin()) {
     if (isset($_GET["tab"])) {
         $page = $_GET["tab"];
     }
-
     if (isset($_POST["createGroup"])) {
         Group::addGroup(htmlentities($_POST["group_name"]));
     } elseif (isset($_POST["createRole"])) {

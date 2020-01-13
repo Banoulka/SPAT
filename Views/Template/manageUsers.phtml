@@ -31,12 +31,43 @@
         <th scope="col">Manage</th>
     </tr>
     </thead>
-    <tbody>
+    <tbody id="users">
+    <?php $editID = $_GET["e-id"] ?? null; ?>
     <?php foreach (User::getAllusers() as $index => $user) : ?>
+        <?php if ($editID && $editID == $user->id() && $user != Authentication::User()) : ?>
+        <tr>
+            <th scope="row"><?= $index+1?></th>
+            <td class="u-name">
+                <input type="text" id="new-username" class="form-control" name="username" value="<?= $user->username()?>" placeholder="<?= $user->username()?>">
+            </td>
+            <td class="roles">
+                <select name="role" id="new-role" class="role-select form-control">
+                    <?php foreach (Role::allRoles() as $role) : ?>
+                        <option value="<?= $role->id ?>" <?= $role->id == $user->role()->id ? "selected class='selected'" : "" ?>><?= $role->role_name?> <?= $role->id == $user->role()->id ? " (current) " : "" ?></option>
+                    <?php endforeach; ?>
+                </select>
+            </td>
+            <td class="groups">
+                <p class="m-0 new-group"><i class="fas fa-plus-square mr-2 text-success"></i>Add a new group...</p>
+                <div class="new-group">
+
+                </div>
+            </td>
+            <td class="buttons">
+                <button class="ml-auto btn btn-sm btn-dark del-btn" id="save">Save</button>
+            </td>
+        </tr>
+        <form action="#" method="post" id="change">
+
+        </form>
+        <?php else : ?>
         <tr id="show-<?= $user->id() ?>" class="table-row show">
             <th scope="row"><?= $index+1?></th>
             <td class="u-name">
-                <span><?= $user->username() ?></span>
+                <span>
+                    <?= $user->username() ?>
+                    <strong><?= $user == Authentication::User() ? " (you) " : "" ?></strong>
+                </span>
             </td>
             <td class="roles">
                 <span><?= $user->role()->role_name ?></span>
@@ -45,34 +76,22 @@
                 <?php foreach ($user->teams() as $team) : ?>
                     <span><?= $team ?>, </span>
                 <?php endforeach; ?>
-                <p class="m-0 new-group"><i class="fas fa-plus-square mr-2 text-success"></i>Add a new group...</p>
             </td>
             <td class="buttons">
-                <button class="ml-auto btn btn-sm btn-success edit-btn" id="<?= $user->id() ?>">Edit</button>
-                <button class="ml-auto btn btn-sm btn-danger del-btn" id="del-<?= $user->id() ?>">Delete</button>
+                <?php if ($user != Authentication::User()) : ?>
+                    <a href="<?= $_SERVER["PHP_SELF"]?>?tab=manageUsers&e-id=<?= $user->id() ?>#users" class="ml-auto btn btn-sm btn-success edit-btn" id="<?= $user->id() ?>">Edit</a>
+                    <button class="ml-auto btn btn-sm btn-danger del-btn" id="del-<?= $user->id() ?>">Delete</button>
+                <?php else : ?>
+                    <button class="ml-auto btn btn-sm btn-success" disabled>Edit</button>
+                    <button class="ml-auto btn btn-sm btn-danger" disabled>Delete</button>
+                <?php endif; ?>
             </td>
         </tr>
+        <?php endif; ?>
     <?php endforeach; ?>
     </tbody>
 </table>
 
-<form action="#" class="hide">
-    <input type="hidden" value="" id="username-change">
-</form>
-
 <script>
-    let editButtons = document.getElementsByClassName("edit-btn");
-    let deleteButtons = document.getElementsByClassName("del-btn");
-    let roles = <?= json_encode(Role::allRoles()) ?>;
-    let groups = <?= json_encode(Group::allgroups()) ?>;
-
-    for (let button of deleteButtons) {
-        button.addEventListener("click", function() {
-           let userID = this.id.substr(4);
-           document.getElementById("show-" + userID).remove();
-
-           //TODO: Send ajax request to delete user
-        });
-    }
 
 </script>

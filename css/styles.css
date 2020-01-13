@@ -34,7 +34,8 @@
 .new-group {
     cursor: pointer;
     color: #414141;
-    font-size: 0.8rem;
+    font-size: 0.9rem;
+    padding-top: 0.6em;
 }
 
 .new-group:hover {
@@ -49,4 +50,14 @@
     display: inline-block;
     margin-top: 2%;
     margin-right: 2%;
+}
+
+.selected {
+    font-weight: bold;
+    background-color: #495157;
+    color: white;
+}
+
+#users td {
+    padding: 0.3em 0.4em;
 }
