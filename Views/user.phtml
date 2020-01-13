@@ -4,13 +4,13 @@
     <div class="row">
         <div class="col-sm-12 d-flex flex-row justify-content-center">
             <button class="button1" type="button" style="font: bold 22px Arial;" id="showBuildingData">Show Building Data</button>
-            <button class="button1" type="button" style="font: bold 22px Arial;">Show Infrastructure Data</button>
+            <button class="button1" type="button" style="font: bold 22px Arial;" id="showInfrastructureData">Show Infrastructure Data</button>
         </div>
     </div>
     <div class="row">
         <div class="col-sm-12 d-flex flex-row justify-content-center">
-            <button class="button1" type="button" style="font: bold 22px Arial;">Show Demographic Data</button>
-            <button class="button1" type="button" style="font: bold 22px Arial;">Show Utilities Data</button>
+            <button class="button1" type="button" style="font: bold 22px Arial;" id="showDemographicsData">Show Demographic Data</button>
+            <button class="button1" type="button" style="font: bold 22px Arial;" id="showUtilitiesData">Show Utilities Data</button>
         </div>
     </div>
     <div class="row mt-4">
@@ -40,6 +40,53 @@
     });
 </script>
 
+<script>
+
+    // Show utility data
+    document.getElementById("showUtilitiesData").addEventListener("click", async () => {
+        document.getElementById("output").innerHTML = "<div class=\"spinner-border text-success\" style=\"width: 4em; height: 4em;\" role=\"status\">\n" +
+            "                    <span class=\"sr-only\">Loading...</span>\n" +
+            "                </div>";
+
+        // TODO: Ajax request to our server
+        let promise = await fetch("requests/api_tests/showUtilitiesData.php");
+        let response = await promise.json();
+
+        document.getElementById("output").innerHTML = JSON.stringify(response, undefined, 1);
+    });
+</script>
+
+<script>
+
+    // Show Infrastructure data
+    document.getElementById("showInfrastructureData").addEventListener("click", async () => {
+        document.getElementById("output").innerHTML = "<div class=\"spinner-border text-success\" style=\"width: 4em; height: 4em;\" role=\"status\">\n" +
+            "                    <span class=\"sr-only\">Loading...</span>\n" +
+            "                </div>";
+
+        // TODO: Ajax request to our server
+        let promise = await fetch("requests/api_tests/showInfrastructureData.php");
+        let response = await promise.json();
+
+        document.getElementById("output").innerHTML = JSON.stringify(response, undefined, 1);
+    });
+    </script>
+
+<script>
+
+    // Show demographic data
+    document.getElementById("showDemographicsData").addEventListener("click", async () => {
+        document.getElementById("output").innerHTML = "<div class=\"spinner-border text-success\" style=\"width: 4em; height: 4em;\" role=\"status\">\n" +
+            "                    <span class=\"sr-only\">Loading...</span>\n" +
+            "                </div>";
+
+        // TODO: Ajax request to our server
+        let promise = await fetch("requests/api_tests/showDemographicsData.php");
+        let response = await promise.json();
+
+        document.getElementById("output").innerHTML = JSON.stringify(response, undefined, 1);
+    });
+</script>
 
 
 

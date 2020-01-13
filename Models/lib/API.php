@@ -41,10 +41,118 @@ class API
         return $res->building;
     }
 
-    //TODO: Add infrastructure
-    //TODO: Add Demographics
-    //TODO: Add Utilities
+    //Infrastructure;
 
+    public static function getAllInfrastructure()
+    {
+       $res = self::setupCurl("http://3.11.87.121/api/v1/infrastructure");
+       return $res->infrastructure;
+    }
+
+    public static function getInfrastructureByID($id)
+    {
+        $res = self::setupCurl("http://3.11.87.121/api/v1/buildings/$id");
+        return $res->infrastructure;
+    }
+
+    public static function createInfrastructure($dataArr)
+    {
+        $payload = json_encode($dataArr);
+        $options = [
+            CURLOPT_CUSTOMREQUEST => "POST",
+            CURLOPT_POSTFIELDS => $payload,
+            CURLOPT_HTTPHEADER => array("Content-Type:application/json")
+        ];
+
+        $res = self::setupCurl("http://3.11.87.121/api/v1/infrastructure" ,$options);
+
+        $res->infrastructure;
+
+    }
+
+    public function deleteInfrastructure($id)
+    {
+        $options = [
+            CURLOPT_CUSTOMREQUEST => "DELETE",
+
+        ];
+        $res = self::setupCurl("http://3.11.87.121/api/v1/infrastructure/$id", $options);
+        return $res->infrastructure;
+    }
+
+    //demographics
+    public static function getAllDemographics()
+    {
+        $res = self::setupCurl("http://3.11.87.121/api/v1/demographics");
+        return $res->demographics;
+    }
+
+    public static function getDemographicsById($id)
+    {
+        $res = self::setupCurl("http://3.11.87.121/api/v1/demographics/$id");
+        return $res->demographics;
+    }
+
+    public static function createDemographics($dataArr)
+    {
+        $payload = json_encode($dataArr);
+        $options = [
+            CURLOPT_CUSTOMREQUEST => "POST",
+            CURLOPT_POSTFIELDS => $payload,
+            CURLOPT_HTTPHEADER => array("Content-Type:application/json"),
+        ];
+
+        $res = self::setupCurl("http://3.11.87.121/api/v1/demographics", $options);
+
+        return $res->demographics;
+    }
+
+    public static  function  deleteDemographics($id)
+    {
+        $options = [
+            CURLOPT_CUSTOMREQUEST => "DELETE",
+        ];
+        $res = self::setupCurl("http://3.11.87.121/api/v1/demographics/$id", $options);
+        return $res->demographics;
+    }
+
+    //utilities;
+    public static function getAllUtilities()
+    {
+        $res = self::setupCurl("http://3.11.87.121/api/v1/utilities");
+
+        return $res->utilities;
+    }
+
+    public static function getUtilitiesByID($id)
+    {
+        $res = self::setupCurl("http://3.11.87.121/api/v1/utilities/$id");
+        return $res->utilities;
+    }
+
+    public static function createUtilities($dataArr)
+    {
+        $payload = json_encode($dataArr);
+        $options = [
+            CURLOPT_CUSTOMREQUEST => "POST",
+            CURLOPT_POSTFIELDS => $payload,
+            CURLOPT_HTTPHEADER => array("Content-Type:application/json"),
+        ];
+
+        $res = self::setupCurl("http://3.11.87.121/api/v1/utilities", $options);
+
+        return $res->utilities;
+
+    }
+
+    public static function deleteUtilities($id)
+    {
+        $options = [
+            CURLOPT_CUSTOMREQUEST => "DELETE",
+            ];
+        $res = self::setupCurl("http://3.11.87.121/api/v1/utilities/$id", $options);
+        return $res->utilities;
+    }
 
     /**
      * @param $url
