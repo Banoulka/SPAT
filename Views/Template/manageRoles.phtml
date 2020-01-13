@@ -21,7 +21,8 @@
             <form class="ml-auto" action="<?php $_SERVER["PHP_SELF"] ?>" method="post">
                 <input type="hidden" name="roleID" value="<?= $role->id ?>">
                 <button class="btn btn-danger btn-sm" name="deleteRole">Delete</button>
-                <button class="btn btn-success btn-sm" name="editRole">Edit</button>
+
+
             </form>
         <?php else : ?>
             <span class="ml-auto"><i class="fas fa-lock"></i></span>
