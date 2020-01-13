@@ -31,11 +31,14 @@
         <th scope="col">Manage</th>
     </tr>
     </thead>
+
+    <tbody>
+
     <tbody id="users">
     <?php $editID = $_GET["e-id"] ?? null; ?>
     <?php foreach (User::getAllusers() as $index => $user) : ?>
         <?php if ($editID && $editID == $user->id() && $user != Authentication::User()) : ?>
-        <tr>
+        <tr id="show-<?= $user->id()?>">
             <th scope="row"><?= $index+1?></th>
             <td class="u-name">
                 <input type="text" id="new-username" class="form-control" value="<?= $user->username()?>" placeholder="<?= $user->username()?>">
@@ -53,7 +56,7 @@
                         <span id="id-<?= $team->id ?>" class="selected-groups"><?= $team->group_name ?><i class="fas fa-minus-square text-danger remove"></i></span>
                     <?php endforeach; ?>
                 </div>
-                <p class="m-0 new-group" id="new-group-button"><i class="fas fa-plus-square mr-2 text-success"></i>Add a new group...</p>
+                <p class="m-0 new-group btn-success btn-sm" id="new-group-button"> Add a new group...</p>
                 <div class="new-group-dropdown hidden">
                     <?php foreach (Group::allgroups() as $group) : ?>
                         <div class="group-option" id="gid-<?= $group->id ?>"><?= $group->group_name ?></div>
@@ -64,9 +67,11 @@
                 <button class="ml-auto btn btn-sm btn-dark del-btn" id="save">Save</button>
             </td>
         </tr>
-        <form action="#" method="post" id="change">
+        <form action="<?= $_SERVER["PHP_SELF"] ?>" method="post" id="change">
             <input type="hidden" name="username" id="u-name">
             <input type="hidden" name="role" id="role">
+            <input type="hidden" name="gids" id="gids">
+            <input type="hidden" name="uid" id="uid">
         </form>
         <?php else : ?>
         <tr id="show-<?= $user->id() ?>" class="table-row show">
@@ -85,6 +90,8 @@
                     <span><?= $team->group_name ?></span>
                 <?php endforeach; ?>
             </td>
+
+
             <td class="buttons">
                 <?php if ($user != Authentication::User()) : ?>
                     <a href="<?= $_SERVER["PHP_SELF"]?>?tab=manageUsers&e-id=<?= $user->id() ?>#users" class="ml-auto btn btn-sm btn-success edit-btn" id="<?= $user->id() ?>">Edit</a>
@@ -105,6 +112,7 @@
         let dropDownButton = document.getElementById("new-group-button");
         let ddOptions = document.getElementsByClassName("group-option");
         let groupDropdown = document.getElementsByClassName("new-group-dropdown")[0];
+        let userID = <?= $_GET["e-id"];  ?>;
 
         <?php $user = User::findByID($_GET["e-id"])  ?>
         let groupIDs = [];
@@ -155,6 +163,41 @@
             groupDropdown.classList.add("hidden");
         });
 
-        document.
+        document.getElementById("save").addEventListener("click", function() {
+            let roleID = document.getElementById("new-role").value;
+            let username = document.getElementById("new-username").value;
+
+            document.getElementById("u-name").value = username;
+            document.getElementById("uid").value = userID;
+            document.getElementById("role").value = roleID;
+            document.getElementById("gids").value = groupIDs;
+            document.getElementById("change").submit();
+        });
+
     <?php endif; ?>
+
+    let deleteButtons = document.getElementsByClassName("del-btn");
+
+    for (let deleteButton of deleteButtons) {
+        deleteButton.addEventListener("click", function() {
+            let userID = parseInt(this.id.substr(4));
+            document.getElementById("show-" + userID).remove();
+            console.log(userID);
+            fetch("requests/users/delete.php", {
+                headers: {
+                    "Accept": "application/json",
+                    "Content-Type": "application/json"
+                },
+                method: "POST",
+                body: JSON.stringify({
+                    "uid": userID
+                }),
+            }).then(async function (res) {
+               let json = await res.json();
+               console.log(json);
+            }).catch(function (err) {
+                console.log(err);
+            });
+        });
+    }
 </script>

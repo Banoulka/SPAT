@@ -41,11 +41,19 @@ class User
 
     }
 
-    public static function removeUser($userName)
+    public function remove()
     {
         QueryBuilder::getInstance()
+            ->table("user_roles")
+            ->remove(["user_id" => $this->id]);
+
+        QueryBuilder::getInstance()
+            ->table("group_members")
+            ->remove(["user_id" => $this->id]);
+
+        QueryBuilder::getInstance()
             ->table("users")
-            ->remove(["username" => $userName]);
+            ->remove(["id" => $this->id]);
     }
 
     /**
@@ -120,5 +128,33 @@ class User
         $groups = Database::db()->query($sql)->fetchAll(PDO::FETCH_OBJ);
 
         return new GroupCollection($this, $groups);
+    }
+
+    public function updateDetails($dataArr)
+    {
+        $username = $dataArr["username"];
+        $userID = $dataArr["userID"];
+        $roleID = $dataArr["roleID"];
+        $groupIDS = explode(",", $dataArr["groupIDs"]);
+
+        // Update username
+        $sql = "UPDATE users SET username = \"$username\" WHERE id = $userID";
+        Database::db()->exec($sql);
+
+        // Update Role
+        $sql = "UPDATE user_roles SET role_id = $roleID WHERE user_id = $userID";
+        Database::db()->exec($sql);
+
+        // Update Groups
+        $sql = "DELETE FROM group_members WHERE user_id = $userID";
+        Database::db()->exec($sql);
+
+        $sql = "";
+        if (!empty($groupIDS) && !empty($groupIDS[0])) {
+            foreach ($groupIDS as $id) {
+                $sql .= "INSERT INTO group_members VALUES ($userID, $id);";
+            }
+            Database::db()->exec($sql);
+        }
     }
 }
