@@ -10,19 +10,17 @@ spl_autoload_register(function ($className) {
 // TODO: Do auth checks
 
 $data = [
-    "Building2",
+    "infrastructure",
     "__v" => 0,
-    "name" =>"Wetherspoons",
-    "type" => "Commercial",
-    "postcode" => "M1 234",
-    "city" => "Manchester",
-    "size_m2" => 3000,
-    "maxOccupants"=> 100,
-    "value" => 120000,
+    "postcode" => "M234 345",
+    "type" => "tarmacked track",
+    "name" => "M69 Ring roundabout",
+    "classification" => "Critical",
+    "_id" => "5e15c9614ef172660ea7ab4f"
 ];
 
-API::createBuilding($data);
-$data = API::createBuilding($data); //$DataArr??
+API::createInfrastructure($data);
+$data = API::createUtilities($data); //$DataArr??
 echo json_encode($data);
 
 //$data = new stdClass();

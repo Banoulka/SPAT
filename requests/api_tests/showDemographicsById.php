@@ -8,10 +8,11 @@ spl_autoload_register(function ($className) {
 });
 
 // TODO: Do auth checks
-$data = API::deleteBuilding(5); //$id??
+$data = API::getDemographicsById(7);
 echo json_encode($data);
 
 
 //$data = new stdClass();
 //$data->error = "You do not have authorisation for this";
 //echo json_encode($data);
+

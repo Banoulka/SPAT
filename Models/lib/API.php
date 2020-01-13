@@ -70,7 +70,7 @@ class API
 
     }
 
-    public function deleteInfrastructure($id)
+    public static function deleteInfrastructure($id)
     {
         $options = [
             CURLOPT_CUSTOMREQUEST => "DELETE",

@@ -4,34 +4,34 @@
     <div class="row">
         <div class="col-sm-12 d-flex flex-row justify-content-center">
             <button class="button1" type="button" style="font: bold 22px Arial;" id="showBuildingData">Show Building Data</button>
-            <button class="button1" type="button" style="font: bold 22px Arial;" id="">Show Building Data by ID</button>
-            <button class="button1" type="button" style="font: bold 22px Arial;" id="">Create New Building</button>
-            <button class="button1" type="button" style="font: bold 22px Arial;" id="">Delete Building Data</button>
+            <button class="button1" type="button" style="font: bold 22px Arial;" id="showBuildingById">Show Building Data by ID</button>
+            <button class="button1" type="button" style="font: bold 22px Arial;" id="createBuilding">Create New Building</button>
+            <button class="button1" type="button" style="font: bold 22px Arial;" id="deleteBuilding">Delete Building Data</button>
 
         </div>
     </div>
     <div class="row">
         <div class="col-sm-12 d-flex flex-row justify-content-center">
             <button class="button1" type="button" style="font: bold 22px Arial;" id="showInfrastructureData">Show Infrastructure Data</button>
-            <button class="button1" type="button" style="font: bold 22px Arial;" id="">Show Infrastructure Data by ID</button>
-            <button class="button1" type="button" style="font: bold 22px Arial;" id="">Create New Infrastructure</button>
-            <button class="button1" type="button" style="font: bold 22px Arial;" id="">Delete Infrastructure</button>
+            <button class="button1" type="button" style="font: bold 22px Arial;" id="showInfrastructureById">Show Infrastructure Data by ID</button>
+            <button class="button1" type="button" style="font: bold 22px Arial;" id="createInfrastructure">Create New Infrastructure</button>
+            <button class="button1" type="button" style="font: bold 22px Arial;" id="deleteInfrastructure">Delete Infrastructure</button>
         </div>
     </div>
     <div class="row">
         <div class="col-sm-12 d-flex flex-row justify-content-center">
             <button class="button1" type="button" style="font: bold 22px Arial;" id="showDemographicsData">Show Demographic Data</button>
-            <button class="button1" type="button" style="font: bold 22px Arial;" id="">Show Demographic Data by ID</button>
-            <button class="button1" type="button" style="font: bold 22px Arial;" id="">Add New Demographic</button>
-            <button class="button1" type="button" style="font: bold 22px Arial;" id="">Delete Demographic</button>
+            <button class="button1" type="button" style="font: bold 22px Arial;" id="showDemographicsById">Show Demographic Data by ID</button>
+            <button class="button1" type="button" style="font: bold 22px Arial;" id="createDemographics">Add New Demographic</button>
+            <button class="button1" type="button" style="font: bold 22px Arial;" id="deleteDemographics">Delete Demographic</button>
         </div>
     </div>
     <div class="row">
         <div class="col-sm-12 d-flex flex-row justify-content-center">
             <button class="button1" type="button" style="font: bold 22px Arial;" id="showUtilitiesData">Show Utilities Data</button>
-            <button class="button1" type="button" style="font: bold 22px Arial;" id="">Show Utilities Data by ID</button>
-            <button class="button1" type="button" style="font: bold 22px Arial;" id="">Add New Utilities</button>
-            <button class="button1" type="button" style="font: bold 22px Arial;" id="">Delete Utilities</button>
+            <button class="button1" type="button" style="font: bold 22px Arial;" id="showUtilitiesById">Show Utilities Data by ID</button>
+            <button class="button1" type="button" style="font: bold 22px Arial;" id="createUtilities">Add New Utilities</button>
+            <button class="button1" type="button" style="font: bold 22px Arial;" id="deleteUtilities">Delete Utilities</button>
         </div>
     </div>
     <div class="row mt-4">
@@ -61,6 +61,54 @@
 </script>
 
 <script>
+    // Show building by id
+    document.getElementById("showBuildingById").addEventListener("click", async () => {
+        document.getElementById("output").innerHTML = "<div class=\"spinner-border text-success\" style=\"width: 4em; height: 4em;\" role=\"status\">\n" +
+            "                    <span class=\"sr-only\">Loading...</span>\n" +
+            "                </div>";
+
+        // TODO: Ajax request to our server
+        let promise = await fetch("requests/api_tests/showBuildingById.php");
+        let response = await promise.json();
+
+        document.getElementById("output").innerHTML = JSON.stringify(response, undefined, 1);
+    });
+</script>
+
+<script>
+    // Show building by id
+    document.getElementById("createBuilding").addEventListener("click", async () => {
+        document.getElementById("output").innerHTML = "<div class=\"spinner-border text-success\" style=\"width: 4em; height: 4em;\" role=\"status\">\n" +
+            "                    <span class=\"sr-only\">Loading...</span>\n" +
+            "                </div>";
+
+        // TODO: Ajax request to our server
+        let promise = await fetch("requests/api_tests/createBuilding.php");
+        let response = await promise.json();
+
+        document.getElementById("output").innerHTML = JSON.stringify(response, undefined, 1);
+    });
+</script>
+
+<script>
+    // Show building by id
+    document.getElementById("deleteBuilding").addEventListener("click", async () => {
+        document.getElementById("output").innerHTML = "<div class=\"spinner-border text-success\" style=\"width: 4em; height: 4em;\" role=\"status\">\n" +
+            "                    <span class=\"sr-only\">Loading...</span>\n" +
+            "                </div>";
+
+        // TODO: Ajax request to our server
+        let promise = await fetch("requests/api_tests/deleteBuilding.php");
+        let response = await promise.json();
+
+        document.getElementById("output").innerHTML = JSON.stringify(response, undefined, 1);
+    });
+</script>
+
+
+
+
+<script>
 
     // Show utility data
     document.getElementById("showUtilitiesData").addEventListener("click", async () => {
@@ -78,6 +126,55 @@
 
 <script>
 
+    // Show utility data by id
+    document.getElementById("showUtilitiesById").addEventListener("click", async () => {
+        document.getElementById("output").innerHTML = "<div class=\"spinner-border text-success\" style=\"width: 4em; height: 4em;\" role=\"status\">\n" +
+            "                    <span class=\"sr-only\">Loading...</span>\n" +
+            "                </div>";
+
+        // TODO: Ajax request to our server
+        let promise = await fetch("requests/api_tests/showUtilitiesById.php");
+        let response = await promise.json();
+
+        document.getElementById("output").innerHTML = JSON.stringify(response, undefined, 1);
+    });
+</script>
+
+<script>
+
+    // Show create new utility
+    document.getElementById("createUtilities").addEventListener("click", async () => {
+        document.getElementById("output").innerHTML = "<div class=\"spinner-border text-success\" style=\"width: 4em; height: 4em;\" role=\"status\">\n" +
+            "                    <span class=\"sr-only\">Loading...</span>\n" +
+            "                </div>";
+
+        // TODO: Ajax request to our server
+        let promise = await fetch("requests/api_tests/createUtilities.php");
+        let response = await promise.json();
+
+        document.getElementById("output").innerHTML = JSON.stringify(response, undefined, 1);
+    });
+</script>
+
+<script>
+
+    // Show create new utility
+    document.getElementById("deleteUtilities").addEventListener("click", async () => {
+        document.getElementById("output").innerHTML = "<div class=\"spinner-border text-success\" style=\"width: 4em; height: 4em;\" role=\"status\">\n" +
+            "                    <span class=\"sr-only\">Loading...</span>\n" +
+            "                </div>";
+
+        // TODO: Ajax request to our server
+        let promise = await fetch("requests/api_tests/deleteUtilties.php");
+        let response = await promise.json();
+
+        document.getElementById("output").innerHTML = JSON.stringify(response, undefined, 1);
+    });
+</script>
+
+
+<script>
+
     // Show Infrastructure data
     document.getElementById("showInfrastructureData").addEventListener("click", async () => {
         document.getElementById("output").innerHTML = "<div class=\"spinner-border text-success\" style=\"width: 4em; height: 4em;\" role=\"status\">\n" +
@@ -90,10 +187,58 @@
 
         document.getElementById("output").innerHTML = JSON.stringify(response, undefined, 1);
     });
-    </script>
+
+</script>
 
 <script>
 
+    // Show Infrastructure data
+    document.getElementById("showInfrastructureById").addEventListener("click", async () => {
+        document.getElementById("output").innerHTML = "<div class=\"spinner-border text-success\" style=\"width: 4em; height: 4em;\" role=\"status\">\n" +
+            "                    <span class=\"sr-only\">Loading...</span>\n" +
+            "                </div>";
+
+        // TODO: Ajax request to our server
+        let promise = await fetch("requests/api_tests/showInfrastructureById.php");
+        let response = await promise.json();
+
+        document.getElementById("output").innerHTML = JSON.stringify(response, undefined, 1);
+    });
+</script>
+
+<script>
+
+    // Show Infrastructure data
+    document.getElementById("createInfrastructure").addEventListener("click", async () => {
+        document.getElementById("output").innerHTML = "<div class=\"spinner-border text-success\" style=\"width: 4em; height: 4em;\" role=\"status\">\n" +
+            "                    <span class=\"sr-only\">Loading...</span>\n" +
+            "                </div>";
+
+        // TODO: Ajax request to our server
+        let promise = await fetch("requests/api_tests/createInfrastructure.php");
+        let response = await promise.json();
+
+        document.getElementById("output").innerHTML = JSON.stringify(response, undefined, 1);
+    });
+</script>
+
+<script>
+    // Show Infrastructure data
+    document.getElementById("deleteInfrastructure").addEventListener("click", async () => {
+        document.getElementById("output").innerHTML = "<div class=\"spinner-border text-success\" style=\"width: 4em; height: 4em;\" role=\"status\">\n" +
+            "                    <span class=\"sr-only\">Loading...</span>\n" +
+            "                </div>";
+
+        // TODO: Ajax request to our server
+        let promise = await fetch("requests/api_tests/deleteInfrastructure.php");
+        let response = await promise.json();
+
+        document.getElementById("output").innerHTML = JSON.stringify(response, undefined, 1);
+    });
+</script>
+
+
+<script>
     // Show demographic data
     document.getElementById("showDemographicsData").addEventListener("click", async () => {
         document.getElementById("output").innerHTML = "<div class=\"spinner-border text-success\" style=\"width: 4em; height: 4em;\" role=\"status\">\n" +
@@ -102,6 +247,51 @@
 
         // TODO: Ajax request to our server
         let promise = await fetch("requests/api_tests/showDemographicsData.php");
+        let response = await promise.json();
+
+        document.getElementById("output").innerHTML = JSON.stringify(response, undefined, 1);
+    });
+</script>
+
+<script>
+    // Show demographic data
+    document.getElementById("showDemographicsById").addEventListener("click", async () => {
+        document.getElementById("output").innerHTML = "<div class=\"spinner-border text-success\" style=\"width: 4em; height: 4em;\" role=\"status\">\n" +
+            "                    <span class=\"sr-only\">Loading...</span>\n" +
+            "                </div>";
+
+        // TODO: Ajax request to our server
+        let promise = await fetch("requests/api_tests/showDemographicsById.php");
+        let response = await promise.json();
+
+        document.getElementById("output").innerHTML = JSON.stringify(response, undefined, 1);
+    });
+</script>
+
+<script>
+    // Show demographic data
+    document.getElementById("createDemographics").addEventListener("click", async () => {
+        document.getElementById("output").innerHTML = "<div class=\"spinner-border text-success\" style=\"width: 4em; height: 4em;\" role=\"status\">\n" +
+            "                    <span class=\"sr-only\">Loading...</span>\n" +
+            "                </div>";
+
+        // TODO: Ajax request to our server
+        let promise = await fetch("requests/api_tests/createDemographics.php");
+        let response = await promise.json();
+
+        document.getElementById("output").innerHTML = JSON.stringify(response, undefined, 1);
+    });
+</script>
+
+<script>
+    // Show demographic data
+    document.getElementById("deleteDemographics").addEventListener("click", async () => {
+        document.getElementById("output").innerHTML = "<div class=\"spinner-border text-success\" style=\"width: 4em; height: 4em;\" role=\"status\">\n" +
+            "                    <span class=\"sr-only\">Loading...</span>\n" +
+            "                </div>";
+
+        // TODO: Ajax request to our server
+        let promise = await fetch("requests/api_tests/deleteDemographics.php");
         let response = await promise.json();
 
         document.getElementById("output").innerHTML = JSON.stringify(response, undefined, 1);
@@ -117,4 +307,7 @@
 
 
 
-</body>
+
+
+
+

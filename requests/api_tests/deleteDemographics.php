@@ -8,7 +8,7 @@ spl_autoload_register(function ($className) {
 });
 
 // TODO: Do auth checks
-$data = API::deleteBuilding(5); //$id??
+$data = API::deleteDemographics(2); //$id??
 echo json_encode($data);
 
 
