@@ -10,7 +10,7 @@ spl_autoload_register(function ($className) {
 
 
 $data = [
-    "postcode" => "M234 345",
+    "areacodes" => "M234 345",
     "type" => "Road",
     "name" => "M69 Ring roundabout",
     "classification" => "Critical",
