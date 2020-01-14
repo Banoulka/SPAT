@@ -25,10 +25,16 @@
         </div>
         <div class="col-md-3">
             <div class="side-nav">
-                <a class="nav-link" href="adminDashboard.php?tab=manageRoles">Manage Roles</a>
-                <a class="nav-link" href="adminDashboard.php?tab=manageTeams">Manage Groups</a>
-                <a class="nav-link" href="adminDashboard.php?tab=manageUsers">Manage Users</a>
-                <a class="nav-link" href="adminDashboard.php?tab=checkSignup">Check Signup</a>
+               <ul>
+                   <li><a class="nav-link <?= $page == "manageRoles" ? "active" : "" ?>"
+                          href="adminDashboard.php?tab=manageRoles">Manage Roles</a></li>
+                   <li><a class="nav-link <?= $page == "manageTeams" ? "active" : "" ?>"
+                          href="adminDashboard.php?tab=manageTeams">Manage Groups</a></li>
+                   <li><a class="nav-link <?= $page == "manageUsers" ? "active" : "" ?>"
+                          href="adminDashboard.php?tab=manageUsers">Manage Users</a></li>
+                   <li><a class="nav-link <?= $page == "checkSignup" ? "active" : "" ?>"
+                          href="adminDashboard.php?tab=checkSignup">Check Signup</a></li>
+               </ul>
                 <a class="nav-link" href="logs.php">Session Logs</a>
             </div>
         </div>
