@@ -47,6 +47,10 @@ if (Authentication::isLoggedIn() && Authentication::User()->isAdmin()) {
         //TODO:: Validation
         User::createUser($formData);
         $message = "User created successfully";
+    } elseif (isset($_POST["group-change"])) {
+        // Manage change
+        var_dump($_POST);
+        die();
     }
 
     require_once "Views/adminDashboard.phtml";
