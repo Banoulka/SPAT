@@ -17,10 +17,11 @@ $data = [
 ];
 
 
-$res = API::createUtilities($data);
-
-echo json_encode($res);
-
-//$data = new stdClass();
-//$data->error = "You do not have authorisation for this";
-//echo json_encode($data);
+if (Authorisation::hasAuth("get")) {
+    $data = API::createUtilities($data);
+    echo json_encode($data);
+} else {
+    $data = new stdClass();
+    $data->error = "You do not have authorisation for this";
+    echo json_encode($data);
+}
