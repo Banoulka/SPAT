@@ -9,7 +9,7 @@ spl_autoload_register(function ($className) {
 });
 
 if (Authorisation::hasAuth("get")) {
-    $data = API::getInfrastructureById("5e1602e51c7a63001279fb0b");
+    $data = API::getInfrastructureById("5e16014d1c7a63001279fb09");
     echo json_encode($data);
 } else {
     $data = new stdClass();
