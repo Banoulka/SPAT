@@ -11,12 +11,6 @@
         <button class="btn btn-success" type="submit" name="createGroup">Create Group</button>
     </div>
 
-
-    <!-- Button trigger modal -->
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-        Launch demo modal
-    </button>
-
     <!-- Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -27,13 +21,21 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
+
+                <form action="<?= $_SERVER["PHP_SELF"] ?>" method="post">
                 <div class="modal-body">
+                        <div class="form-group">
+                            <label for="team-name">New Team Name</label>
+                            <input type="text" id="team-name" name="team-name" class="form-control">
+                            <input type="hidden" id="team-id" name="team-id">
+                        </div>
 
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
+                    <button type="submit" name="group-change" class="btn btn-primary">Save changes</button>
                 </div>
+                </form>
             </div>
         </div>
     </div>
@@ -47,10 +49,25 @@
         <form class="ml-auto" action="<?php $_SERVER["PHP_SELF"] ?>" method="post">
             <input type="hidden" name="groupID" value="<?= $group->id ?>">
             <button class="btn btn-danger btn-sm" name="deleteGroup">Delete</button>
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                Edit
-            </button>
+            <button type="button" class="btn btn-primary btn-sm edit-button" data-toggle="modal" data-target="#exampleModal" data-teamName="<?= $group->group_name ?>" data-teamId="<?= $group->id ?>">Edit</button>
         </form>
     </div>
 <?php endforeach; ?>
 
+<script>
+    let editButtons = document.getElementsByClassName("edit-button");
+
+    for (let button of editButtons) {
+        button.addEventListener("click", function() {
+           let teamName = this.getAttribute("data-teamName");
+           let teamId = this.getAttribute("data-teamId");
+           console.log(teamName + " " + teamId);
+
+           document.getElementById("team-name").value = teamName;
+           document.getElementById("team-name").placeholder = teamName;
+           document.getElementById("team-id").value = teamId;
+        });
+    }
+
+
+</script>

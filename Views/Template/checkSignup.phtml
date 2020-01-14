@@ -19,11 +19,42 @@
                 <td><?= date("jS \of M o H:i", strtotime($requestUser->timestamp)) ?></td>
                 <td>
                     <div class="btn-group" role="group">
-                        <button type="button" class="btn btn-success btn-sm" id="app-<?= $requestUser->id() ?>">Approve</button>
-                        <button type="button" class="btn btn-danger btn-sm" id="den-<?= $requestUser->id() ?>">Deny</button>
+                        <button type="button" class="btn btn-success btn-sm role-buttons" id="app-<?= $requestUser->id() ?>">Approve</button>
+                        <button type="button" class="btn btn-danger btn-sm role-buttons" id="den-<?= $requestUser->id() ?>">Deny</button>
                     </div>
                 </td>
             </tr>
         <?php endforeach; ?>
     </tbody>
 </table>
+
+<script>
+    let buttons = document.getElementsByClassName("role-buttons");
+    for (let button of buttons) {
+        button.addEventListener("click", function() {
+            let change = this.id.split("-")[0] === "app";
+            let id = this.id.substr(4);
+            let body = {
+                "acceptance": change,
+                "id": id
+            };
+            fetch("requests/users/adminReq.php", {
+               method: "POST",
+               headers: {
+                   "Content-Type": "application/json"
+               },
+                body: JSON.stringify(body)
+            }).then(async res => {
+                let json = await res.json();
+                console.log(json);
+            }).catch(function(err) {
+                console.log(err);
+            });
+        });
+    }
+
+    function displayMessage(message)
+    {
+        console.log(message);
+    }
+</script>

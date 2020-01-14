@@ -8,8 +8,8 @@ spl_autoload_register(function ($className) {
     require_once "../../Models/lib/$className.php";
 });
 
-if (Authorisation::hasAuth("get")) {
-    $data = API::getInfrastructureById("5e16014d1c7a63001279fb09");
+if ($succeeded = Authorisation::hasAuth("get")) {
+    $data = API::getInfrastructureById("5e1602e51c7a63001279fb0b");
     echo json_encode($data);
 } else {
     $data = new stdClass();
@@ -17,5 +17,8 @@ if (Authorisation::hasAuth("get")) {
     echo json_encode($data);
 }
 
-
+SessionLog::createLog([
+    "endpoint" => "Infrastructure - Get by ID",
+    "succeeded" => $succeeded ? 1 : 0
+]);
 

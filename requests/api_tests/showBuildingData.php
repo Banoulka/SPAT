@@ -10,7 +10,7 @@ spl_autoload_register(function ($className) {
 // End Bootstrap
 
 
-if (Authorisation::hasAuth("get")) {
+if ($succeeded = Authorisation::hasAuth("get")) {
     $data = API::getAllBuildings();
     echo json_encode($data);
 } else {
@@ -19,3 +19,7 @@ if (Authorisation::hasAuth("get")) {
     echo json_encode($data);
 }
 
+SessionLog::createLog([
+    "endpoint" => "Building - Get All",
+    "succeeded" => $succeeded ? 1 : 0
+]);

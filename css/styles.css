@@ -7,9 +7,38 @@
     display: inline-block;
     font-size: 16px;
 }
+.navbar {
+    background-color: #eceeee !important;
+}
+
+.navbar li a:hover {
+    background-color: #d1cab6;
+}
 
 .side-nav {
-    /*background-color: #cee0ee;*/
+    margin: 0;
+    padding: 0;
+    width: 200px;
+    background-color: #eceeee;
+}
+
+.side-nav ul {
+    list-style-type: none;
+    padding: 0;
+    border: 1px solid #2f2f2f;
+}
+
+ li a {
+    display: block;
+    color: #000;
+    padding: 8px 16px;
+    text-decoration: none;
+}
+
+
+li a:hover {
+    background-color: #28a745;
+    color: white;
 }
 
 .group {
@@ -80,7 +109,7 @@
     min-width: 200px;
     min-height: 200px;
     position: absolute;
-    top: 80px;
+    top: 40px;
     left: -40px;
     background-color: rgb(241, 234, 241);
     padding: 0.2em 0.4em;
