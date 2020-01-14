@@ -16,7 +16,3 @@ if (Authorisation::hasAuth("edit")) {
     $data->error = "You do not have authorisation for this";
     echo json_encode($data);
 }
-
-//$data = new stdClass();
-//$data->error = "You do not have authorisation for this";
-//echo json_encode($data);
