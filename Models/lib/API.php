@@ -108,7 +108,7 @@ class API
         return $res->demographics;
     }
 
-    public static  function  deleteDemographics($id)
+    public static function deleteDemographics($id)
     {
         $options = [
             CURLOPT_CUSTOMREQUEST => "DELETE",
