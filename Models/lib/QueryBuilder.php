@@ -177,7 +177,7 @@ class QueryBuilder
 
     private function execute(PDOStatement $stmt)
     {
-        $this->className ? $stmt->setFetchMode(PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE, $this->className)
+        $this->className ? $stmt->setFetchMode(PDO::FETCH_CLASS, $this->className)
             : $stmt->setFetchMode(PDO::FETCH_OBJ);
         $stmt->execute();
 
