@@ -28,13 +28,17 @@
     border: 1px solid #2f2f2f;
 }
 
- li a {
+li a {
     display: block;
     color: #000;
     padding: 8px 16px;
     text-decoration: none;
 }
 
+li a.active {
+    background-color: #49a756;
+    color: white;
+}
 
 li a:hover {
     background-color: #28a745;
