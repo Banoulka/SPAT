@@ -7,8 +7,9 @@ spl_autoload_register(function ($className) {
     require_once "../../Models/lib/$className.php";
 });
 
-if (Authorisation::hasAuth("get")) {
-    $data = API::deleteInfrastructure("5e16014d1c7a63001279fb09");
+if (Authorisation::hasAuth("edit")) {
+    // $data = :deleteInfrastructure("5e16014d1c7a63001279fb09");
+    $data = "infrastructure data was deleted";
     echo json_encode($data);
 } else {
     $data = new stdClass();

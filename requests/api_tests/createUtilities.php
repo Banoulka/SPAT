@@ -17,7 +17,7 @@ $data = [
 ];
 
 
-if (Authorisation::hasAuth("get")) {
+if (Authorisation::hasAuth("edit")) {
     $data = API::createUtilities($data);
     echo json_encode($data);
 } else {
