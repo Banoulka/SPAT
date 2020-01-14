@@ -11,15 +11,17 @@ if (Authentication::isLoggedIn()) {
 } else {
     if (isset($_POST["submit"])) {
         $formData = [
-            "username" => $_POST["username"],
-            "password" => $_POST["password"],
-            "confirm_password" => $_POST["confirm_password"]
+            "username" => htmlentities($_POST["username"]),
+            "password" => htmlentities($_POST["password"]),
+            "confirm_password" => htmlentities($_POST["confirm_password"]),
+            "email" => htmlentities($_POST["email"])
         ];
 
         $validation = new Validation();
-        $validation->name("username")->required()->length(0, 20)->unique("users", "username");
-        $validation->name("confirm_password")->required();
-        $validation->name("password")->required()->equal($formData["confirm_password"]);
+        $validation->name("Username")->value($formData["username"])->required()->length(0, 20)->unique("users", "username");
+        $validation->name("Confirm Password")->value($formData["confirm_password"])->required();
+        $validation->name("Email")->value($formData["email"])->required()->type(FILTER_VALIDATE_EMAIL)->unique("admin_requests", "email");
+        $validation->name("Password")->value($formData["password"])->required()->equal($formData["confirm_password"]);
 
         if ($validation->isSuccess()) {
             // Send requests
