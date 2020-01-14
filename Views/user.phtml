@@ -1,17 +1,18 @@
 <?php require_once "Views/Template/header.phtml"; ?>
 
-<div class="container"> <!-- all 4 options as a group, Building, Infrastructure, Demographic, Utilities. -->
+<div class="container button-group"> <!-- all 4 options as a group, Building, Infrastructure, Demographic, Utilities. -->
     <div class="row">
-        <div class="col-sm-12 d-flex flex-row justify-content-center">
+        <h2>Buildings</h2>
+        <div class="col-sm-12 d-flex flex-row justify-content-center align-items-center">
             <button class="button1" type="button" style="font: bold 22px Arial;" id="showBuildingData">Show Building Data</button>
             <button class="button1" type="button" style="font: bold 22px Arial;" id="showBuildingById">Show Building Data by ID</button>
             <button class="button1" type="button" style="font: bold 22px Arial;" id="createBuilding">Create New Building</button>
             <button class="button1" type="button" style="font: bold 22px Arial;" id="deleteBuilding">Delete Building Data</button>
-
         </div>
     </div>
     <div class="row">
-        <div class="col-sm-12 d-flex flex-row justify-content-center">
+        <h2>Infrastructure</h2>
+        <div class="col-sm-12 d-flex flex-row justify-content-center align-items-center">
             <button class="button1" type="button" style="font: bold 22px Arial;" id="showInfrastructureData">Show Infrastructure Data</button>
             <button class="button1" type="button" style="font: bold 22px Arial;" id="showInfrastructureById">Show Infrastructure Data by ID</button>
             <button class="button1" type="button" style="font: bold 22px Arial;" id="createInfrastructure">Create New Infrastructure</button>
@@ -19,7 +20,8 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-sm-12 d-flex flex-row justify-content-center">
+        <h2>Demographics</h2>
+        <div class="col-sm-12 d-flex flex-row justify-content-center align-items-center">
             <button class="button1" type="button" style="font: bold 22px Arial;" id="showDemographicsData">Show Demographic Data</button>
             <button class="button1" type="button" style="font: bold 22px Arial;" id="showDemographicsById">Show Demographic Data by ID</button>
             <button class="button1" type="button" style="font: bold 22px Arial;" id="createDemographics">Add New Demographic</button>
@@ -27,7 +29,8 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-sm-12 d-flex flex-row justify-content-center">
+        <h2>Utilities</h2>
+        <div class="col-sm-12 d-flex flex-row justify-content-center align-items-center">
             <button class="button1" type="button" style="font: bold 22px Arial;" id="showUtilitiesData">Show Utilities Data</button>
             <button class="button1" type="button" style="font: bold 22px Arial;" id="showUtilitiesById">Show Utilities Data by ID</button>
             <button class="button1" type="button" style="font: bold 22px Arial;" id="createUtilities">Add New Utilities</button>
@@ -46,260 +49,63 @@
 <?php require_once "Views/Template/footer.phtml"; ?>
 
 <script>
+    async function outputResponse(url)
+    {
+        document.getElementById("output").innerHTML = "<div class=\"spinner-border text-success\" style=\"width: 4em; height: 4em;\" role=\"status\">\n" +
+            "                    <span class=\"sr-only\">Loading...</span>\n" +
+            "                </div>";
+
+        let promise = await fetch(url);
+        let response = await promise.json();
+        document.getElementById("output").innerHTML = JSON.stringify(response, undefined, 1);
+    }
+    
     // Show building data
     document.getElementById("showBuildingData").addEventListener("click", async () => {
-        document.getElementById("output").innerHTML = "<div class=\"spinner-border text-success\" style=\"width: 4em; height: 4em;\" role=\"status\">\n" +
-            "                    <span class=\"sr-only\">Loading...</span>\n" +
-            "                </div>";
-
-        // TODO: Ajax request to our server
-        let promise = await fetch("requests/api_tests/showBuildingData.php");
-        let response = await promise.json();
-
-        document.getElementById("output").innerHTML = JSON.stringify(response, undefined, 1);
+        await outputResponse("requests/api_tests/showBuildingData.php");
     });
-</script>
 
-<script>
     // Show building by id
     document.getElementById("showBuildingById").addEventListener("click", async () => {
-        document.getElementById("output").innerHTML = "<div class=\"spinner-border text-success\" style=\"width: 4em; height: 4em;\" role=\"status\">\n" +
-            "                    <span class=\"sr-only\">Loading...</span>\n" +
-            "                </div>";
-
-        // TODO: Ajax request to our server
-        let promise = await fetch("requests/api_tests/showBuildingById.php");
-        let response = await promise.json();
-
-        document.getElementById("output").innerHTML = JSON.stringify(response, undefined, 1);
+        await outputResponse("requests/api_tests/showBuildingById.php");
     });
-</script>
 
-<script>
     // Show building by id
     document.getElementById("createBuilding").addEventListener("click", async () => {
-        document.getElementById("output").innerHTML = "<div class=\"spinner-border text-success\" style=\"width: 4em; height: 4em;\" role=\"status\">\n" +
-            "                    <span class=\"sr-only\">Loading...</span>\n" +
-            "                </div>";
-
-        // TODO: Ajax request to our server
-        let promise = await fetch("requests/api_tests/createBuilding.php");
-        let response = await promise.json();
-
-        document.getElementById("output").innerHTML = JSON.stringify(response, undefined, 1);
+        await outputResponse("requests/api_tests/createBuilding.php");
     });
-</script>
 
-<script>
     // Show building by id
     document.getElementById("deleteBuilding").addEventListener("click", async () => {
-        document.getElementById("output").innerHTML = "<div class=\"spinner-border text-success\" style=\"width: 4em; height: 4em;\" role=\"status\">\n" +
-            "                    <span class=\"sr-only\">Loading...</span>\n" +
-            "                </div>";
-
-        // TODO: Ajax request to our server
-        let promise = await fetch("requests/api_tests/deleteBuilding.php");
-        let response = await promise.json();
-
-        document.getElementById("output").innerHTML = JSON.stringify(response, undefined, 1);
+        await outputResponse("requests/api_tests/deleteBuilding.php");
     });
-</script>
-
-
-
-
-<script>
 
     // Show utility data
     document.getElementById("showUtilitiesData").addEventListener("click", async () => {
-        document.getElementById("output").innerHTML = "<div class=\"spinner-border text-success\" style=\"width: 4em; height: 4em;\" role=\"status\">\n" +
-            "                    <span class=\"sr-only\">Loading...</span>\n" +
-            "                </div>";
-
-        // TODO: Ajax request to our server
-        let promise = await fetch("requests/api_tests/showUtilitiesData.php");
-        let response = await promise.json();
-
-        document.getElementById("output").innerHTML = JSON.stringify(response, undefined, 1);
+        await outputResponse("requests/api_tests/showUtilitiesData.php");
     });
-</script>
-
-<script>
 
     // Show utility data by id
     document.getElementById("showUtilitiesById").addEventListener("click", async () => {
-        document.getElementById("output").innerHTML = "<div class=\"spinner-border text-success\" style=\"width: 4em; height: 4em;\" role=\"status\">\n" +
-            "                    <span class=\"sr-only\">Loading...</span>\n" +
-            "                </div>";
-
-        // TODO: Ajax request to our server
-        let promise = await fetch("requests/api_tests/showUtilitiesById.php");
-        let response = await promise.json();
-
-        document.getElementById("output").innerHTML = JSON.stringify(response, undefined, 1);
+        await outputResponse("requests/api_tests/showUtilitiesById.php");
     });
-</script>
-
-<script>
 
     // Show create new utility
     document.getElementById("createUtilities").addEventListener("click", async () => {
-        document.getElementById("output").innerHTML = "<div class=\"spinner-border text-success\" style=\"width: 4em; height: 4em;\" role=\"status\">\n" +
-            "                    <span class=\"sr-only\">Loading...</span>\n" +
-            "                </div>";
-
-        // TODO: Ajax request to our server
-        let promise = await fetch("requests/api_tests/createUtilities.php");
-        let response = await promise.json();
-
-        document.getElementById("output").innerHTML = JSON.stringify(response, undefined, 1);
+        await outputResponse("requests/api_tests/createUtilities.php");
     });
-</script>
-
-<script>
 
     // Show create new utility
     document.getElementById("deleteUtilities").addEventListener("click", async () => {
-        document.getElementById("output").innerHTML = "<div class=\"spinner-border text-success\" style=\"width: 4em; height: 4em;\" role=\"status\">\n" +
-            "                    <span class=\"sr-only\">Loading...</span>\n" +
-            "                </div>";
-
-        // TODO: Ajax request to our server
-        let promise = await fetch("requests/api_tests/deleteUtilities.php");
-        let response = await promise.json();
-
-        document.getElementById("output").innerHTML = JSON.stringify(response, undefined, 1);
+        await outputResponse("requests/api_tests/deleteUtilities.php");
     });
-</script>
-
-
-<script>
 
     // Show Infrastructure data
     document.getElementById("showInfrastructureData").addEventListener("click", async () => {
-        document.getElementById("output").innerHTML = "<div class=\"spinner-border text-success\" style=\"width: 4em; height: 4em;\" role=\"status\">\n" +
-            "                    <span class=\"sr-only\">Loading...</span>\n" +
-            "                </div>";
-
-        // TODO: Ajax request to our server
-        let promise = await fetch("requests/api_tests/showInfrastructureData.php");
-        let response = await promise.json();
-
-        document.getElementById("output").innerHTML = JSON.stringify(response, undefined, 1);
+        await outputResponse("requests/api_tests/showInfrastructureData.php");
     });
 
 </script>
-
-<script>
-
-    // Show Infrastructure data by id
-    document.getElementById("showInfrastructureById").addEventListener("click", async () => {
-        document.getElementById("output").innerHTML = "<div class=\"spinner-border text-success\" style=\"width: 4em; height: 4em;\" role=\"status\">\n" +
-            "                    <span class=\"sr-only\">Loading...</span>\n" +
-            "                </div>";
-
-        // TODO: Ajax request to our server
-        let promise = await fetch("requests/api_tests/showInfrastructureById.php");
-        let response = await promise.json();
-
-        document.getElementById("output").innerHTML = JSON.stringify(response, undefined, 1);
-    });
-</script>
-
-<script>
-
-    // create new infrastructure
-    document.getElementById("createInfrastructure").addEventListener("click", async () => {
-        document.getElementById("output").innerHTML = "<div class=\"spinner-border text-success\" style=\"width: 4em; height: 4em;\" role=\"status\">\n" +
-            "                    <span class=\"sr-only\">Loading...</span>\n" +
-            "                </div>";
-
-        // TODO: Ajax request to our server
-        let promise = await fetch("requests/api_tests/createInfrastructure.php");
-        let response = await promise.json();
-
-        document.getElementById("output").innerHTML = JSON.stringify(response, undefined, 1);
-    });
-</script>
-
-<script>
-    // delete infrastructure
-    document.getElementById("deleteInfrastructure").addEventListener("click", async () => {
-        document.getElementById("output").innerHTML = "<div class=\"spinner-border text-success\" style=\"width: 4em; height: 4em;\" role=\"status\">\n" +
-            "                    <span class=\"sr-only\">Loading...</span>\n" +
-            "                </div>";
-
-        // TODO: Ajax request to our server
-        let promise = await fetch("requests/api_tests/deleteInfrastructure.php");
-        let response = await promise.json();
-
-        document.getElementById("output").innerHTML = JSON.stringify(response, undefined, 1);
-    });
-</script>
-
-
-<script>
-    // Show demographic data
-    document.getElementById("showDemographicsData").addEventListener("click", async () => {
-        document.getElementById("output").innerHTML = "<div class=\"spinner-border text-success\" style=\"width: 4em; height: 4em;\" role=\"status\">\n" +
-            "                    <span class=\"sr-only\">Loading...</span>\n" +
-            "                </div>";
-
-        // TODO: Ajax request to our server
-        let promise = await fetch("requests/api_tests/showDemographicsData.php");
-        let response = await promise.json();
-
-        document.getElementById("output").innerHTML = JSON.stringify(response, undefined, 1);
-    });
-</script>
-
-<script>
-    // Show demographic data by id
-    document.getElementById("showDemographicsById").addEventListener("click", async () => {
-        document.getElementById("output").innerHTML = "<div class=\"spinner-border text-success\" style=\"width: 4em; height: 4em;\" role=\"status\">\n" +
-            "                    <span class=\"sr-only\">Loading...</span>\n" +
-            "                </div>";
-
-        // TODO: Ajax request to our server
-        let promise = await fetch("requests/api_tests/showDemographicsById.php");
-        let response = await promise.json();
-
-        document.getElementById("output").innerHTML = JSON.stringify(response, undefined, 1);
-    });
-</script>
-
-<script>
-    // create demographic data
-    document.getElementById("createDemographics").addEventListener("click", async () => {
-        document.getElementById("output").innerHTML = "<div class=\"spinner-border text-success\" style=\"width: 4em; height: 4em;\" role=\"status\">\n" +
-            "                    <span class=\"sr-only\">Loading...</span>\n" +
-            "                </div>";
-
-        // TODO: Ajax request to our server
-        let promise = await fetch("requests/api_tests/createDemographics.php");
-        let response = await promise.json();
-
-        document.getElementById("output").innerHTML = JSON.stringify(response, undefined, 1);
-    });
-</script>
-
-<script>
-    // delete demographic data
-    document.getElementById("deleteDemographics").addEventListener("click", async () => {
-        document.getElementById("output").innerHTML = "<div class=\"spinner-border text-success\" style=\"width: 4em; height: 4em;\" role=\"status\">\n" +
-            "                    <span class=\"sr-only\">Loading...</span>\n" +
-            "                </div>";
-
-        // TODO: Ajax request to our server
-        let promise = await fetch("requests/api_tests/deleteDemographics.php");
-        let response = await promise.json();
-
-        document.getElementById("output").innerHTML = JSON.stringify(response, undefined, 1);
-    });
-</script>
-
-
-
 
 
 

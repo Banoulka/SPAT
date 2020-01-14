@@ -13,6 +13,10 @@ class Group
     public static function removegroup($groupID)
     {
         QueryBuilder::getInstance()
+            ->table("group_members")
+            ->remove(["group_id" => $groupID]);
+
+        QueryBuilder::getInstance()
             ->table("groups")
             ->remove(["id" => $groupID]);
     }
