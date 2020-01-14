@@ -15,13 +15,13 @@
             <tr id="req-<?= $requestUser->id() ?>">
                 <th scope="row"><?= $index+1 ?></th>
                 <td><?= $requestUser->username() ?></td>
+                <td><?= $requestUser->email ?></td>
                 <td><?= date("jS \of M o H:i", strtotime($requestUser->timestamp)) ?></td>
                 <td>
                     <div class="btn-group" role="group">
                         <button type="button" class="btn btn-success btn-sm" id="app-<?= $requestUser->id() ?>">Approve</button>
                         <button type="button" class="btn btn-danger btn-sm" id="den-<?= $requestUser->id() ?>">Deny</button>
                     </div>
-
                 </td>
             </tr>
         <?php endforeach; ?>
