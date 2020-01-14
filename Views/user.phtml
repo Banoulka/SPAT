@@ -49,224 +49,95 @@
 <?php require_once "Views/Template/footer.phtml"; ?>
 
 <script>
-    // Show building data
-    document.getElementById("showBuildingData").addEventListener("click", async () => {
-        showLoading();
-        let promise = await fetch("requests/api_tests/showBuildingData.php");
-        let response = await promise.json();
-        document.getElementById("output").innerHTML = JSON.stringify(response, undefined, 1);
-    });
-
-    function showLoading()
+    async function outputResponse(url)
     {
         document.getElementById("output").innerHTML = "<div class=\"spinner-border text-success\" style=\"width: 4em; height: 4em;\" role=\"status\">\n" +
             "                    <span class=\"sr-only\">Loading...</span>\n" +
             "                </div>";
+
+        let promise = await fetch(url);
+        let response = await promise.json();
+        document.getElementById("output").innerHTML = JSON.stringify(response, undefined, 1);
     }
-
-
+    
+    // Show building data
+    document.getElementById("showBuildingData").addEventListener("click", async () => {
+        await outputResponse("requests/api_tests/showBuildingData.php");
+    });
 
     // Show building by id
     document.getElementById("showBuildingById").addEventListener("click", async () => {
-        showLoading();
-
-        
-        let promise = await fetch("requests/api_tests/showBuildingById.php");
-        let response = await promise.json();
-
-        document.getElementById("output").innerHTML = JSON.stringify(response, undefined, 1);
+        await outputResponse("requests/api_tests/showBuildingById.php");
     });
-
-
 
     // Show building by id
     document.getElementById("createBuilding").addEventListener("click", async () => {
-        showLoading();
-        
-        let promise = await fetch("requests/api_tests/createBuilding.php");
-        let response = await promise.json();
-
-        document.getElementById("output").innerHTML = JSON.stringify(response, undefined, 1);
+        await outputResponse("requests/api_tests/createBuilding.php");
     });
-
-
 
     // Show building by id
     document.getElementById("deleteBuilding").addEventListener("click", async () => {
-        showLoading();
-        
-        let promise = await fetch("requests/api_tests/deleteBuilding.php");
-        let response = await promise.json();
-
-        document.getElementById("output").innerHTML = JSON.stringify(response, undefined, 1);
+        await outputResponse("requests/api_tests/deleteBuilding.php");
     });
-
-
-
-
-
-
 
     // Show utility data
     document.getElementById("showUtilitiesData").addEventListener("click", async () => {
-        showLoading();
-
-        
-        let promise = await fetch("requests/api_tests/showUtilitiesData.php");
-        let response = await promise.json();
-
-        document.getElementById("output").innerHTML = JSON.stringify(response, undefined, 1);
+        await outputResponse("requests/api_tests/showUtilitiesData.php");
     });
-
-
-
 
     // Show utility data by id
     document.getElementById("showUtilitiesById").addEventListener("click", async () => {
-        showLoading();
-
-        
-        let promise = await fetch("requests/api_tests/showUtilitiesById.php");
-        let response = await promise.json();
-
-        document.getElementById("output").innerHTML = JSON.stringify(response, undefined, 1);
+        await outputResponse("requests/api_tests/showUtilitiesById.php");
     });
-
-
-
 
     // Show create new utility
     document.getElementById("createUtilities").addEventListener("click", async () => {
-        showLoading();
-
-        
-        let promise = await fetch("requests/api_tests/createUtilities.php");
-        let response = await promise.json();
-
-        document.getElementById("output").innerHTML = JSON.stringify(response, undefined, 1);
+        await outputResponse("requests/api_tests/createUtilities.php");
     });
-
-
-
 
     // Show create new utility
     document.getElementById("deleteUtilities").addEventListener("click", async () => {
-        showLoading();
-
-        
-        let promise = await fetch("requests/api_tests/deleteUtilities.php");
-        let response = await promise.json();
-
-        document.getElementById("output").innerHTML = JSON.stringify(response, undefined, 1);
+        await outputResponse("requests/api_tests/deleteUtilities.php");
     });
-
-
-
-
 
     // Show Infrastructure data
     document.getElementById("showInfrastructureData").addEventListener("click", async () => {
-        showLoading();
-
-        
-        let promise = await fetch("requests/api_tests/showInfrastructureData.php");
-        let response = await promise.json();
-
-        document.getElementById("output").innerHTML = JSON.stringify(response, undefined, 1);
+        await outputResponse("requests/api_tests/showInfrastructureData.php");
     });
-
-
-
-
 
     // Show Infrastructure data
     document.getElementById("showInfrastructureById").addEventListener("click", async () => {
-        showLoading();
-
-        
-        let promise = await fetch("requests/api_tests/showInfrastructureById.php");
-        let response = await promise.json();
-
-        document.getElementById("output").innerHTML = JSON.stringify(response, undefined, 1);
+        await outputResponse("requests/api_tests/showInfrastructureById.php");
     });
-
-
-
 
     // Show Infrastructure data
     document.getElementById("createInfrastructure").addEventListener("click", async () => {
-        showLoading();
-
-        
-        let promise = await fetch("requests/api_tests/createInfrastructure.php");
-        let response = await promise.json();
-
-        document.getElementById("output").innerHTML = JSON.stringify(response, undefined, 1);
+        await outputResponse("requests/api_tests/createInfrastructure.php");
     });
-
-
 
     // Show Infrastructure data
     document.getElementById("deleteInfrastructure").addEventListener("click", async () => {
-        showLoading();
-
-        
-        let promise = await fetch("requests/api_tests/deleteInfrastructure.php");
-        let response = await promise.json();
-
-        document.getElementById("output").innerHTML = JSON.stringify(response, undefined, 1);
+        await outputResponse("requests/api_tests/deleteInfrastructure.php");
     });
-
-
-
 
     // Show demographic data
     document.getElementById("showDemographicsData").addEventListener("click", async () => {
-        showLoading();
-
-        
-        let promise = await fetch("requests/api_tests/showDemographicsData.php");
-        let response = await promise.json();
-
-        document.getElementById("output").innerHTML = JSON.stringify(response, undefined, 1);
+        await outputResponse("requests/api_tests/showDemographicsData.php");
     });
-
-
 
     // Show demographic data
     document.getElementById("showDemographicsById").addEventListener("click", async () => {
-        showLoading();
-
-        
-        let promise = await fetch("requests/api_tests/showDemographicsById.php");
-        let response = await promise.json();
-
-        document.getElementById("output").innerHTML = JSON.stringify(response, undefined, 1);
+        await outputResponse("requests/api_tests/showDemographicsById.php");
     });
-
-
 
     // Show demographic data
     document.getElementById("createDemographics").addEventListener("click", async () => {
-        showLoading();
-
-        
-        let promise = await fetch("requests/api_tests/createDemographics.php");
-        let response = await promise.json();
-
-        document.getElementById("output").innerHTML = JSON.stringify(response, undefined, 1);
+        await outputResponse("requests/api_tests/createDemographics.php");
     });
-
-
 
     // Show demographic data
     document.getElementById("deleteDemographics").addEventListener("click", async () => {
-        showLoading();
-
-
-        let promise = await fetch("requests/api_tests/deleteDemographics.php");
-        let response = await promise.json();
-        document.getElementById("output").innerHTML = JSON.stringify(response, undefined, 1);
+        await outputResponse("requests/api_tests/deleteDemographics.php");
     });
 
 </script>
