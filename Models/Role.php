@@ -1,9 +1,18 @@
 <?php
 
-
+/**
+ * Class Role
+ *
+ * @property string role_name
+ */
 class Role
 {
     private $permissions;
+
+    public function __toString()
+    {
+        return $this->role_name;
+    }
 
     public function __construct()
     {

@@ -121,3 +121,12 @@
     color: #9c110c !important;
 }
 
+
+.perms {
+    display: flex;
+    flex-direction: row;
+}
+
+.perms div {
+    margin: 0 0.4em;
+}
