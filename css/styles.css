@@ -12,7 +12,8 @@
 }
 
 .navbar li a:hover {
-    background-color: #d1cab6;
+    border-radius: 10px;
+    background-color: #dcdcdc;
 }
 
 .side-nav {
@@ -28,19 +29,19 @@
     border: 1px solid #2f2f2f;
 }
 
-li a {
+.side-nav li a {
     display: block;
     color: #000;
     padding: 8px 16px;
     text-decoration: none;
 }
 
-li a.active {
+.side-nav li a.active {
     background-color: #49a756;
     color: white;
 }
 
-li a:hover {
+.side-nav li a:hover {
     background-color: #28a745;
     color: white;
 }
