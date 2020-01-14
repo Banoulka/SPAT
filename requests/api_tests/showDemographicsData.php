@@ -8,7 +8,6 @@ session_start();
 spl_autoload_register(function ($className) {
     require_once "../../Models/lib/$className.php";
 });
-
 if (Authorisation::hasAuth("get")) {
     $data = API::getAllDemographics();
     echo json_encode($data);
