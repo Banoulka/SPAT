@@ -38,7 +38,7 @@ class User
         $sql = "INSERT INTO admin_requests (username, password, email) VALUES (:username, :password, :email)";
         $stmt = Database::db()->prepare($sql);
         $stmt->bindParam(":username", $dataArray["username"]);
-        $stmt->bindParam(":username", $dataArray["email"]);
+        $stmt->bindParam(":email", $dataArray["email"]);
         $stmt->bindParam(":password", $hashedPass);
         $stmt->execute();
     }
