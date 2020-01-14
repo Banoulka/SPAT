@@ -11,12 +11,10 @@ spl_autoload_register(function ($className) {
 
 $data = [
     "infrastructure",
-    "__v" => 0,
     "postcode" => "M234 345",
     "type" => "tarmacked track",
     "name" => "M69 Ring roundabout",
     "classification" => "Critical",
-    "_id" => "5e15c9614ef172660ea7ab4f"
 ];
 
 API::createInfrastructure($data);
