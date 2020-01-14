@@ -37,7 +37,16 @@ class Authentication {
             }
         }
         else {
-            array_push($errors, "Username does not exist");
+            $waitingUser = User::getUserRequestByUsername($username);
+            if ($waitingUser) {
+                if (password_verify($password, $waitingUser->password())) {
+                    array_push($errors, "Your account is currently waiting for approval by an admin");
+                } else {
+                    array_push($errors, "Username or password does not match");
+                }
+            } else {
+                array_push($errors, "Username does not exist");
+            }
         }
         return $errors;
     }
