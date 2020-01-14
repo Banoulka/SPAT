@@ -8,7 +8,7 @@ spl_autoload_register(function ($className) {
     require_once "../../Models/lib/$className.php";
 });
 
-if (Authorisation::hasAuth("get")) {
+if ($succeeded = Authorisation::hasAuth("get")) {
     $data = API::getInfrastructureById("5e1602e51c7a63001279fb0b");
     echo json_encode($data);
 } else {
@@ -17,5 +17,8 @@ if (Authorisation::hasAuth("get")) {
     echo json_encode($data);
 }
 
-
+SessionLog::createLog([
+    "endpoint" => "Infrastructure - Get by ID",
+    "succeeded" => $succeeded ? 1 : 0
+]);
 

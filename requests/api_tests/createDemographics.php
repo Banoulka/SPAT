@@ -9,7 +9,7 @@ spl_autoload_register(function ($className) {
     require_once "../../Models/lib/$className.php";
 });
 
-if (Authorisation::hasAuth("edit")) {
+if ($succeeded = Authorisation::hasAuth("edit")) {
     $data = [
         "postcode" => "M1",
         "totalHealthNeeds" => 1500,
@@ -24,3 +24,8 @@ if (Authorisation::hasAuth("edit")) {
     $data->error = "You do not have authorisation for this";
     echo json_encode($data);
 }
+
+SessionLog::createLog([
+    "endpoint" => "Demographics - Create",
+    "succeeded" => $succeeded ? 1 : 0
+]);

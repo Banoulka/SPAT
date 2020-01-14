@@ -16,7 +16,7 @@ $data = [
     "classification" => "Critical",
 ];
 
-if (Authorisation::hasAuth("edit")) {
+if ($succeeded = Authorisation::hasAuth("edit")) {
     $data = API::createInfrastructure($data);
     echo json_encode($data);
 } else {
@@ -24,3 +24,8 @@ if (Authorisation::hasAuth("edit")) {
     $data->error = "You do not have authorisation for this";
     echo json_encode($data);
 }
+
+SessionLog::createLog([
+    "endpoint" => "Infrastructure - Create",
+    "succeeded" => $succeeded ? 1 : 0
+]);

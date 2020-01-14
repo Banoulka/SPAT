@@ -9,7 +9,7 @@ spl_autoload_register(function ($className) {
 });
 
 
-if (Authorisation::hasAuth("edit")) {
+if ($succeeded = Authorisation::hasAuth("edit")) {
 //    $data = API::deleteBuilding("5e16014d1c7a63001279fb09");
     $data = "This request would have deleted a building";
     echo json_encode($data);
@@ -18,3 +18,8 @@ if (Authorisation::hasAuth("edit")) {
     $data->error = "You do not have authorisation for this";
     echo json_encode($data);
 }
+
+SessionLog::createLog([
+    "endpoint" => "Building - Delete",
+    "succeeded" => $succeeded ? 1 : 0
+]);
