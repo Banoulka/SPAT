@@ -10,7 +10,7 @@ spl_autoload_register(function ($className) {
 // TODO: Do auth checks
 
 $data = [
-    "infrastructure",
+
     "postcode" => "M234 345",
     "type" => "tarmacked track",
     "name" => "M69 Ring roundabout",

@@ -10,7 +10,6 @@ spl_autoload_register(function ($className) {
 // TODO: Do auth checks
 
 $data = [
-    "Building2",
     "name" =>"Wetherspoons",
     "type" => "Commercial",
     "postcode" => "M1 234",
