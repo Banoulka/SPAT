@@ -35,9 +35,10 @@ class User
     public static function createAdminRequest($dataArray)
     {
         $hashedPass = password_hash($dataArray["password"], PASSWORD_DEFAULT);
-        $sql = "INSERT INTO admin_requests (username, password) VALUES (:username, :password)";
+        $sql = "INSERT INTO admin_requests (username, password, email) VALUES (:username, :password, :email)";
         $stmt = Database::db()->prepare($sql);
         $stmt->bindParam(":username", $dataArray["username"]);
+        $stmt->bindParam(":username", $dataArray["email"]);
         $stmt->bindParam(":password", $hashedPass);
         $stmt->execute();
     }
