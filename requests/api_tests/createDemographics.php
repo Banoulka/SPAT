@@ -11,7 +11,6 @@ spl_autoload_register(function ($className) {
 // TODO: Do auth checks
 
 $data = [
-
     "postcode" => "M1",
     "totalHealthNeeds" => 1500,
     "totalMobilityNeeds" => 5000,
