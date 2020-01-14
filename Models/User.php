@@ -34,11 +34,12 @@ class User
 
     public static function createAdminRequest($dataArray)
     {
+        $hashedPass = password_hash($dataArray["password"], PASSWORD_DEFAULT);
         $sql = "INSERT INTO admin_requests (username, password) VALUES (:username, :password)";
         $stmt = Database::db()->prepare($sql);
         $stmt->bindParam(":username", $dataArray["username"]);
-        $stmt->bindParam(":password", password_hash($dataArray["password"], PASSWORD_DEFAULT));
-
+        $stmt->bindParam(":password", $hashedPass);
+        $stmt->execute();
     }
 
     public function remove()
@@ -96,6 +97,31 @@ class User
                     ->fetchAs("User")
                     ->getAll();
         return $users;
+    }
+
+    /**
+     * @param $username
+     * @return User
+     */
+    public static function getUserRequestByUsername($username)
+    {
+        return QueryBuilder::getInstance()
+            ->table("admin_requests")
+            ->where("username", $username)
+            ->fetchAs("User")
+            ->first();
+    }
+
+    /**
+     * @return User[]
+     */
+    public static function getAllAdminRequests()
+    {
+        return QueryBuilder::getInstance()
+            ->table("admin_requests")
+            ->fetchAs("User")
+            ->orderby("timestamp")
+            ->getAll();
     }
 
     // Relationships
