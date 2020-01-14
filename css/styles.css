@@ -7,18 +7,25 @@
     display: inline-block;
     font-size: 16px;
 }
+.navbar {
+    background-color: #eceeee !important;
+}
 
+.navbar li a:hover {
+    background-color: #d1cab6;
+}
 
 .side-nav {
     margin: 0;
     padding: 0;
     width: 200px;
-    background-color: #d1cab6;
+    background-color: #eceeee;
 }
 
 .side-nav ul {
     list-style-type: none;
     padding: 0;
+    border: 1px solid #2f2f2f;
 }
 
  li a {
