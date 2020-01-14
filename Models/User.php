@@ -41,11 +41,19 @@ class User
 
     }
 
-    public static function removeUser($userName)
+    public function remove()
     {
         QueryBuilder::getInstance()
+            ->table("user_roles")
+            ->remove(["user_id" => $this->id]);
+
+        QueryBuilder::getInstance()
+            ->table("group_members")
+            ->remove(["user_id" => $this->id]);
+
+        QueryBuilder::getInstance()
             ->table("users")
-            ->remove(["username" => $userName]);
+            ->remove(["id" => $this->id]);
     }
 
     /**
@@ -92,12 +100,24 @@ class User
 
     // Relationships
 
+    /**
+     * @return Role
+     */
     public function role()
     {
-        $sql = "SELECT role_name, id FROM user_roles
+        $sql = "SELECT id, role_name, editable, permissions FROM user_roles
                 LEFT JOIN roles r on user_roles.role_id = r.id
                 WHERE user_id = $this->id";
-        return Database::db()->query($sql)->fetch(PDO::FETCH_OBJ);
+        $stmt = Database::db()->prepare($sql);
+        $stmt->setFetchMode(PDO::FETCH_CLASS, "Role");
+        $stmt->execute();
+        if (!$stmt->fetch()) {
+            $sql = "INSERT INTO user_roles VALUES ($this->id, 4)";
+            Database::db()->exec($sql);
+        }
+        $stmt->execute();
+
+        return $stmt->fetch();
     }
 
     public function isRole($roleName)

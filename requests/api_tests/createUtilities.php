@@ -8,9 +8,18 @@ spl_autoload_register(function ($className) {
 });
 
 // TODO: Do auth checks
-$data = API::deleteBuilding(5); //$id??
-echo json_encode($data);
 
+$data = [
+    "postcode" => "M1",
+    "name" => "Nukes",
+    "type" => "Electric",
+    "classification" => "Critical",
+];
+
+
+$res = API::createUtilities($data);
+
+echo json_encode($res);
 
 //$data = new stdClass();
 //$data->error = "You do not have authorisation for this";

@@ -1,11 +1,34 @@
 <?php require_once "Template/header.phtml" ?>
 
-<h5>Index Home Page</h5>
-<?php if (Authentication::isLoggedIn()) : ?>
-
-    <p>Hi you are logged in! <?= Authentication::User()->username(); ?></p>
-<?php else : ?>
-    <p>Please login</p>
-<?php endif; ?>
+<div class="container">
+    <div class="row mt-4">
+        <div class="col-md-8">
+            <h2>Index Home Page</h2>
+            <?php if (Authentication::isLoggedIn()) : ?>
+                <p>Hi you are logged in! <?= Authentication::User()->username(); ?></p>
+                <p>Your current role is <span class="text-danger"><?= Authentication::User()->role() ?></span></p>
+                <p>Your current groups are: </p>
+                <ul>
+                    <?php foreach (Authentication::User()->teams()->list() as $team) : ?>
+                        <li><span class="text-danger"><?= $team->group_name?></span></li>
+                    <?php endforeach; ?>
+                </ul>
+                <p>Your current permissions are:</p>
+                <div class="perms">
+                    <div>
+                        <h5>Get</h5>
+                        <span class="text-danger"><?= Authentication::User()->role()->hasPermission("get") ? "True" : "False" ?></span>
+                    </div>
+                    <div>
+                        <h5>Edit</h5>
+                        <span class="text-danger"><?= Authentication::User()->role()->hasPermission("edit") ? "True": "False" ?></span>
+                    </div>
+                </div>
+            <?php else : ?>
+                <p>Please login</p>
+            <?php endif; ?>
+        </div>
+    </div>
+</div>
 
 <?php require_once "Template/footer.phtml" ?>

@@ -1,5 +1,6 @@
 <?php
 
+
 // Bootstrap
 header("Content-Type: application/json");
 session_start();
@@ -10,19 +11,18 @@ spl_autoload_register(function ($className) {
 // TODO: Do auth checks
 
 $data = [
-    "Building2",
+    "demographic",
     "__v" => 0,
-    "name" =>"Wetherspoons",
-    "type" => "Commercial",
-    "postcode" => "M1 234",
-    "city" => "Manchester",
-    "size_m2" => 3000,
-    "maxOccupants"=> 100,
-    "value" => 120000,
+    "postcode" => "M1",
+    "totalHealthNeeds" => 1500,
+    "totalMobilityNeeds" => 5000,
+    "totalElderly" => 5000,
+    "totalPopulation" => 12000,
+    "_id" => "5e15eab306f6e7159f259e5c",
 ];
 
 API::createBuilding($data);
-$data = API::createBuilding($data); //$DataArr??
+$data = API::createDemographics($data); //$DataArr??
 echo json_encode($data);
 
 //$data = new stdClass();
