@@ -7,20 +7,19 @@ spl_autoload_register(function ($className) {
     require_once "../../Models/lib/$className.php";
 });
 
-// TODO: Do auth checks
 
 $data = [
-
     "postcode" => "M234 345",
-    "type" => "tarmacked track",
+    "type" => "Road",
     "name" => "M69 Ring roundabout",
     "classification" => "Critical",
 ];
 
-API::createInfrastructure($data);
-$data = API::createUtilities($data); //$DataArr??
-echo json_encode($data);
-
-//$data = new stdClass();
-//$data->error = "You do not have authorisation for this";
-//echo json_encode($data);
+if (Authorisation::hasAuth("edit")) {
+    $data = API::createInfrastructure($data);
+    echo json_encode($data);
+} else {
+    $data = new stdClass();
+    $data->error = "You do not have authorisation for this";
+    echo json_encode($data);
+}

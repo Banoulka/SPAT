@@ -49,9 +49,9 @@ class API
        return $res->infrastructure;
     }
 
-    public static function getInfrastructureByID($id)
+    public static function getInfrastructureById($id)
     {
-        $res = self::setupCurl("http://3.11.87.121/api/v1/buildings/$id");
+        $res = self::setupCurl("http://3.11.87.121/api/v1/infrastructure/$id");
         return $res->infrastructure;
     }
 
@@ -66,7 +66,7 @@ class API
 
         $res = self::setupCurl("http://3.11.87.121/api/v1/infrastructure" ,$options);
 
-        $res->infrastructure;
+        return $res->infrastructure;
 
     }
 
@@ -79,6 +79,7 @@ class API
         $res = self::setupCurl("http://3.11.87.121/api/v1/infrastructure/$id", $options);
         return $res->infrastructure;
     }
+
 
     //demographics
     public static function getAllDemographics()

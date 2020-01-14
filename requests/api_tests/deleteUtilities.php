@@ -7,14 +7,14 @@ spl_autoload_register(function ($className) {
     require_once "../../Models/lib/$className.php";
 });
 
-// TODO: Do auth checks
-$allUtilities = API::getAllUtilities();
-$rand = rand(0, count($allUtilities)-1);
-$uteToDelete = $allUtilities[$rand];
-$data = API::deleteUtilities($uteToDelete->_id); //$id??
-echo json_encode($data);
 
+if (Authorisation::hasAuth("edit")) {
+  //  $data = API::deleteUtilities("5e1602e51c7a63001279fb0b");
+    $data = "utilityies deleted";
+    echo json_encode($data);
+} else {
+    $data = new stdClass();
+    $data->error = "You do not have authorisation for this";
+    echo json_encode($data);
+}
 
-//$data = new stdClass();
-//$data->error = "You do not have authorisation for this";
-//echo json_encode($data);
