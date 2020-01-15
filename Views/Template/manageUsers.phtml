@@ -165,7 +165,13 @@
         function deleteGroup() {
             let id = parseInt(this.parentElement.id.substr(3));
             groupIDs.splice(groupIDs.indexOf(id), 1);
-            this.parentElement.remove();
+            this.parentElement.classList.add("anim");
+            $(this.parentElement).animate({
+                opacity: 0,
+                marginLeft: "+=50",
+            }, 350, () => {
+                this.parentElement.remove();
+            });
         }
 
         document.addEventListener("click", function() {

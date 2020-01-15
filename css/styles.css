@@ -287,3 +287,8 @@
 .mockaroo-menu .head {
     border-bottom: 1px solid white;
 }
+
+.selected-groups.anim {
+    white-space: nowrap;
+    overflow: hidden;
+}
