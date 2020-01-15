@@ -46,7 +46,7 @@
                 body: JSON.stringify(body)
             }).then(async res => {
                 let json = await res.json();
-                console.log(json);
+                document.getElementById("req-" + id).remove();
             }).catch(function(err) {
                 console.log(err);
             });

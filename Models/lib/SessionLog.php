@@ -29,7 +29,17 @@ class SessionLog
         return QueryBuilder::getInstance()
             ->table("SessionLog")
             ->fetchAs("SessionLog")
-            ->orderby("timestamp")
             ->getAll();
+    }
+
+    public static function getJSONLogs()
+    {
+        $sql = "SELECT SessionLog.id, u.username, endpoint, succeeded, timestamp 
+                FROM SessionLog LEFT JOIN users u on SessionLog.user_id = u.id";
+
+        $stmt = Database::db()->prepare($sql);
+        $stmt->setFetchMode(PDO::FETCH_OBJ);
+        $stmt->execute();
+        return $stmt->fetchAll();
     }
 }

@@ -3,19 +3,197 @@
 
 ?>
 
-<table class="table table-striped table-sm">
+<table class="table table-striped table-sm table-logs">
     <caption>Session Logs</caption>
     <thead class="thead-dark">
-    <tr>
-        <th scope="col">#</th>
-        <th scope="col">Username</th>
-        <th scope="col">Endpoint</th>
-        <th scope="col">Granted / Denied</th>
-        <th scope="col">Time Stamp</th>
-    </tr>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col" id="filter-username" class="filter-click int">
+                <div class="head-contain">
+                    <p>Username</p>
+                </div>
+            </th>
+            <th scope="col" id="filter-endpoint" class="filter-click int">
+                <div class="head-contain">
+                    <p>Endpoint</p>
+                </div>
+            </th>
+            <th scope="col" id="filter-succeeded" class="filter-click int">
+                <div class="head-contain">
+                    <p>Granted / Denied</p>
+                </div>
+            </th>
+            <th scope="col" id="filter-timestamp" class="filter-click int">
+                <div class="head-contain">
+                    <p>Timestamp</p>
+                </div>
+            </th>
+        </tr>
     </thead>
 
-    <tbody>
+    <tbody id="logs">
+        <tr>
+            <th scope="row">2</th>
+            <td>hi</td>
+            <td>hi</td>
+            <td>hi</td>
+            <td>hi</td>
+        </tr>
+        <tr>
+            <th scope="row">3</th>
+            <td>hi</td>
+            <td>hi</td>
+            <td>hi</td>
+            <td>hi</td>
+        </tr>
     </tbody>
 </table>
+
+<script>
+    let state = {
+        "currentOrder": "desc",
+        "currentFilter": "none"
+    };
+
+    let filterClicks = document.getElementsByClassName("filter-click");
+    initSetup();
+
+    async function initSetup()
+    {
+        updateIcons();
+        await getLogs();
+        displayLogs();
+    }
+
+    for (let clicker of filterClicks) {
+        clicker.addEventListener("click", function() {
+            resetClasses();
+            this.classList.remove("int");
+
+            if (state.currentFilter === this.id.substr(7)) {
+                if (state.currentOrder === "asc") {
+                    state.currentOrder = "desc";
+                    this.classList.add("desc");
+                } else {
+                    state.currentOrder = "asc";
+                    this.classList.add("asc");
+                }
+            } else {
+                state.currentFilter = this.id.substr(7);
+                state.currentOrder = "asc";
+                this.classList.add("asc");
+            }
+            updateIcons();
+            if (state.logs)
+                sortLogs();
+        });
+    }
+
+    function sortLogs()
+    {
+        state.logs.sort(customSort);
+        displayLogs();
+    }
+
+    function customSort(a, b)
+    {
+        return state.currentOrder === "asc" ?
+            a[state.currentFilter].localeCompare(b[state.currentFilter]) :
+            b[state.currentFilter].localeCompare(a[state.currentFilter]);
+    }
+
+    function displayLogs()
+    {
+        document.getElementById("logs").innerHTML = "";
+        state.logs.forEach(function (log, index) {
+            let tableRow = document.createElement("tr");
+            let idRow = document.createElement("th");
+
+            // Display first column
+            idRow.setAttribute("scope", "row");
+            idRow.textContent = index+1;
+            tableRow.appendChild(idRow);
+
+            // Display username
+            let usernameRow = document.createElement("td");
+            let endpointRow = document.createElement("td");
+            let permissionRow = document.createElement("td");
+            let timestampRow = document.createElement("td");
+
+            usernameRow.textContent = log.username;
+            endpointRow.textContent = log.endpoint;
+            permissionRow.textContent = log.succeeded;
+            timestampRow.textContent = log.timestamp;
+
+            tableRow.appendChild(usernameRow);
+            tableRow.appendChild(endpointRow);
+            tableRow.appendChild(permissionRow);
+            tableRow.appendChild(timestampRow);
+
+            document.getElementById("logs").appendChild(tableRow);
+        });
+    }
+
+    async function getLogs()
+    {
+        await fetch("requests/other/sessionLogs.php", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(state)
+        }).then(async res => {
+            let json = await res.json();
+            state.logs = json;
+        }).catch(err => {
+            console.log(err);
+        });
+    }
+
+    function resetClasses()
+    {
+        for (let clicker of filterClicks) {
+            clicker.className = "filter-click int";
+        }
+    }
+
+    function updateIcons()
+    {
+        for (let clicker of filterClicks) {
+            let headContain = clicker.children[0];
+            if (headContain.children[1])
+                headContain.children[1].remove();
+
+            if (clicker.classList.contains("int")) {
+                // Intermediate
+                headContain.appendChild(getIcon("int"));
+
+            } else if (clicker.classList.contains("asc")) {
+                headContain.appendChild(getIcon("asc"));
+
+            } else if (clicker.classList.contains("desc")) {
+                headContain.appendChild(getIcon("desc"));
+
+            }
+        }
+    }
+
+    function getIcon(type)
+    {
+        let node = document.createElement("i");
+        node.classList.add("fas");
+
+        if (type === "asc") {
+            node.classList.add("fa-caret-square-up");
+        } else if (type === "desc") {
+            node.classList.add("fa-caret-square-down");
+        } else if (type === "int"){
+            node.classList.add("fa-minus-square");
+        } else {
+            node = null;
+        }
+
+        return node;
+    }
+</script>
 

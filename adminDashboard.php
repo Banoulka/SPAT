@@ -10,6 +10,14 @@ require_once "Models/Role.php";
 require_once "Models/Group.php";
 require_once "Models/User.php";
 
+//$input = [
+//    "currentFilter" => "username",
+//    "currentOrder" => "desc",
+//];
+//
+//var_dump(SessionLog::sortLogs($input));
+//die();
+
 if (Authentication::isLoggedIn() && Authentication::User()->isAdmin()) {
 
     if (isset($_POST["uid"])) {

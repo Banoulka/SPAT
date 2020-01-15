@@ -164,3 +164,34 @@
 .perms div {
     margin: 0 0.4em;
 }
+
+.table-logs {
+    text-align: center;
+}
+
+.table-logs .head-contain {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.table-logs .filter-click {
+    cursor: pointer;
+    transition: 0.2s all;
+}
+
+.table-logs .filter-click i {
+    margin-left: 20px;
+    font-size: 1.15rem;
+}
+
+.table-logs .head-contain p {
+    margin: 0;
+    justify-self: center;
+}
+
+.table-logs .filter-click:hover {
+    color: #e9e9e9 !important;
+    background-color: #424a50 !important;
+}
