@@ -20,7 +20,7 @@
     margin: 0;
     padding: 0;
     background-color: #eceeee;
-    height: 100%;
+    height: 500px;
     border-radius: 0 10px 10px 0;
     border: 1px solid rgba(47, 47, 47, 0.26);
 }
@@ -32,12 +32,20 @@
 }
 
 .side-nav li a {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
     padding: 0.7em;
     border-bottom: 1px solid rgba(47, 47, 47, 0.26);
-    display: block;
     color: #000;
     text-decoration: none;
     transition: 0.2s all;
+}
+
+.side-nav li a i {
+    font-size: 1.15em;
+    margin-left: auto;
+    margin-right: 20px;
 }
 
 .side-nav li a.active {
