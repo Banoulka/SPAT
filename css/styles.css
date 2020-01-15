@@ -259,6 +259,10 @@
     border-radius: 10px;
 }
 
+.role-mock.off {
+    color: #dc3545 !important;
+}
+
 .role-mock:hover {
     color: white !important;
     background-color: #4e555b !important;
@@ -270,9 +274,16 @@
 
 .mockaroo-menu {
     z-index: 999;
+    width: 200%;
     padding: 0.7em;
     position: absolute;
-    top: 50px;
+    top: 53px;
     left: 0;
-    background-color: #eceeee;
+    background-color: #343a40;
+    color: white;
+    border-radius: 0 0 10px 10px;
+}
+
+.mockaroo-menu .head {
+    border-bottom: 1px solid white;
 }

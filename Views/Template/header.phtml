@@ -55,11 +55,11 @@
                     <?php if (Authentication::isLoggedIn()) : ?>
                         <?php if (Authentication::User()->isAdmin()) : ?>
                             <li class="nav-item" style="position: relative">
-                                <div class="nav-link role-mock">
+                                <div class="nav-link role-mock off">
                                     Mock Role<i class="fas fa-cog ml-2"></i>
                                 </div>
                                 <div class="mockaroo-menu" style="display: none;">
-                                    <h5>Mock Permissions</h5>
+                                    <h5 class="head">Mock Permissions</h5>
                                     <p>Currently Mocking: none</p>
                                     <form action="#" method="post">
 
