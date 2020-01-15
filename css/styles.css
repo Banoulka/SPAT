@@ -146,7 +146,6 @@
 .new-group-dropdown {
     z-index: 999;
     min-width: 100%;
-    min-height: 200px;
     position: absolute;
     top: 32px;
     left: 0;
@@ -176,9 +175,11 @@
     background-color: #d7d0d2;
 }
 
-.hidden {
-    display: none;
-}
+/*.hidden {*/
+/*    display: none;*/
+/*}*/
+
+
 /* TODO: Add animation */
 .showen {
     display: block;
@@ -265,4 +266,14 @@
 
 #logs i {
     cursor: help;
+}
+
+.mockaroo-menu {
+    z-index: 999;
+    width: 100%;
+    padding: 0.7em;
+    position: absolute;
+    top: 50px;
+    left: 0;
+    background-color: #424a50;
 }

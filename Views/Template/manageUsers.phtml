@@ -58,7 +58,7 @@
                 </div>
                 <div class="m-0 mt-2 new-group btn-success btn-sm" id="new-group-button">
                     Add a new group...<i class="fas fa-plus-square"></i>
-                    <div class="new-group-dropdown hidden">
+                    <div class="new-group-dropdown hidden" style="display: none">
                         <?php foreach (Group::allgroups() as $group) : ?>
                             <div class="group-option" id="gid-<?= $group->id ?>"><?= $group->group_name ?></div>
                         <?php endforeach; ?>
@@ -126,12 +126,14 @@
         dropDownButton.addEventListener("click", function(e) {
             e.stopPropagation();
             if (groupDropdown.classList.contains("hidden")) {
+                // Show dropdown
+                $(".new-group-dropdown").slideDown();
                 groupDropdown.classList.remove("hidden");
-                groupDropdown.classList.add("showen");
                 dropDownButton.children[0].className = "fas fa-caret-square-down";
             } else {
+                // Hide dropdown
+                $(".new-group-dropdown").slideUp();
                 groupDropdown.classList.add("hidden");
-                groupDropdown.classList.remove("showen");
                 dropDownButton.children[0].className = "fas fa-plus-square";
             }
         });
@@ -168,7 +170,6 @@
 
         document.addEventListener("click", function() {
             groupDropdown.classList.add("hidden");
-            groupDropdown.classList.remove("showen");
         });
 
         document.getElementById("save").addEventListener("click", function() {
