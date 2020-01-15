@@ -26,15 +26,15 @@
         <div class="col-md-3">
             <div class="side-nav">
                 <ul>
-                   <li><a class="nav-link <?= $page == "manageRoles" ? "active" : "" ?>"
+                    <li><a class="nav-link <?= $page == "manageUsers" ? "active" : "" ?>"
+                           href="adminDashboard.php?tab=manageUsers">Manage Users<i class="fas fa-user-tag"></i></a></li>
+                    <li><a class="nav-link <?= $page == "manageRoles" ? "active" : "" ?>"
                           href="adminDashboard.php?tab=manageRoles">Manage Roles<i class="fas fa-user-cog"></i></a></li>
-                   <li><a class="nav-link <?= $page == "manageTeams" ? "active" : "" ?>"
+                    <li><a class="nav-link <?= $page == "manageTeams" ? "active" : "" ?>"
                           href="adminDashboard.php?tab=manageTeams">Manage Groups<i class="fas fa-users"></i></a></li>
-                   <li><a class="nav-link <?= $page == "manageUsers" ? "active" : "" ?>"
-                          href="adminDashboard.php?tab=manageUsers">Manage Users<i class="fas fa-user-tag"></i></a></li>
-                   <li><a class="nav-link <?= $page == "checkSignup" ? "active" : "" ?>"
+                    <li><a class="nav-link <?= $page == "checkSignup" ? "active" : "" ?>"
                           href="adminDashboard.php?tab=checkSignup">Check Signup<i class="fas fa-edit"></i></a></li>
-                   <li><a class="nav-link <?= $page == "logs" ? "active" : "" ?>"
+                    <li><a class="nav-link <?= $page == "logs" ? "active" : "" ?>"
                           href="adminDashboard.php?tab=logs">Session Logs<i class="fas fa-book-open"></i></a></li>
                </ul>
             </div>
