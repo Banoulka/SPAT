@@ -7,6 +7,16 @@
     display: inline-block;
     font-size: 16px;
 }
+
+.title {
+    color: #28a745;
+    font-weight: 400;
+    font-size: 2.4rem;
+    margin-bottom: 25px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #28a745;
+}
+
 .navbar {
     background-color: #eceeee !important;
 }
@@ -229,4 +239,9 @@
 
 .big-row {
     height: 150px;
+}
+
+.custom-checkbox .custom-control-input:checked~.custom-control-label::before{
+    background-color: #28a745;
+    border: 1px solid #28a745;
 }
