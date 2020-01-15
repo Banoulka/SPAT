@@ -10,7 +10,7 @@
     <?php endif; ?>
 
     <div class="row mt-2 justify-content-center align-items-center">
-        <h2>Admin Dashboard</h2>
+        <h2 class="title">Admin Dashboard</h2>
     </div>
     <div class="row">
         <div class="col-md-9">
@@ -26,16 +26,16 @@
         <div class="col-md-3">
             <div class="side-nav">
                 <ul>
-                   <li><a class="nav-link <?= $page == "manageRoles" ? "active" : "" ?>"
-                          href="adminDashboard.php?tab=manageRoles">Manage Roles</a></li>
-                   <li><a class="nav-link <?= $page == "manageTeams" ? "active" : "" ?>"
-                          href="adminDashboard.php?tab=manageTeams">Manage Groups</a></li>
-                   <li><a class="nav-link <?= $page == "manageUsers" ? "active" : "" ?>"
-                          href="adminDashboard.php?tab=manageUsers">Manage Users</a></li>
-                   <li><a class="nav-link <?= $page == "checkSignup" ? "active" : "" ?>"
-                          href="adminDashboard.php?tab=checkSignup">Check Signup</a></li>
-                   <li><a class="nav-link <?= $page == "logs" ? "active" : "" ?>"
-                          href="adminDashboard.php?tab=logs">Session Logs</a></li>
+                    <li><a class="nav-link <?= $page == "manageUsers" ? "active" : "" ?>"
+                           href="adminDashboard.php?tab=manageUsers">Manage Users<i class="fas fa-user-tag"></i></a></li>
+                    <li><a class="nav-link <?= $page == "manageRoles" ? "active" : "" ?>"
+                          href="adminDashboard.php?tab=manageRoles">Manage Roles<i class="fas fa-user-cog"></i></a></li>
+                    <li><a class="nav-link <?= $page == "manageTeams" ? "active" : "" ?>"
+                          href="adminDashboard.php?tab=manageTeams">Manage Groups<i class="fas fa-users"></i></a></li>
+                    <li><a class="nav-link <?= $page == "checkSignup" ? "active" : "" ?>"
+                          href="adminDashboard.php?tab=checkSignup">Check Signup<i class="fas fa-edit"></i></a></li>
+                    <li><a class="nav-link <?= $page == "logs" ? "active" : "" ?>"
+                          href="adminDashboard.php?tab=logs">Session Logs<i class="fas fa-book-open"></i></a></li>
                </ul>
             </div>
         </div>

@@ -46,6 +46,10 @@ class User
     public function remove()
     {
         QueryBuilder::getInstance()
+            ->table("SessionLog")
+            ->remove(["user_id" => $this->id]);
+
+        QueryBuilder::getInstance()
             ->table("user_roles")
             ->remove(["user_id" => $this->id]);
 
@@ -114,6 +118,19 @@ class User
     }
 
     /**
+     * @param $id
+     * @return User
+     */
+    public static function getUserRequestById($id)
+    {
+        return QueryBuilder::getInstance()
+            ->table("admin_requests")
+            ->where("id", $id)
+            ->fetchAs("User")
+            ->first();
+    }
+
+    /**
      * @return User[]
      */
     public static function getAllAdminRequests()
@@ -123,6 +140,36 @@ class User
             ->fetchAs("User")
             ->orderby("timestamp")
             ->getAll();
+    }
+
+    public static function approveAdminRequest($userID)
+    {
+        $data = User::getUserRequestById($userID);
+        QueryBuilder::getInstance()->table("admin_requests")
+            ->remove(["id" => $userID]);
+
+        QueryBuilder::getInstance()->table("users")
+            ->insert([
+                "username" => $data->username,
+                "password" => $data->password
+            ]);
+
+        QueryBuilder::getInstance()->table("user_roles")
+            ->insert([
+                "user_id" => $userID,
+                "role_id" => 3
+            ]);
+
+        //TODO: Send an email
+//        $headers = "From: thinklab@webmaster.com";
+//        $msg = "Congratulations, your request for an admin user has been accepted";
+//        mail($data->email, "Admin Request Accepted", $msg, $headers);
+    }
+
+    public static function denyAdminRequest($userID)
+    {
+        QueryBuilder::getInstance()->table("admin_requests")
+            ->remove(["id" => $userID]);
     }
 
     // Relationships

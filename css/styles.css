@@ -7,6 +7,16 @@
     display: inline-block;
     font-size: 16px;
 }
+
+.title {
+    color: #28a745;
+    font-weight: 400;
+    font-size: 2.4rem;
+    margin-bottom: 25px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #28a745;
+}
+
 .navbar {
     background-color: #eceeee !important;
 }
@@ -19,29 +29,47 @@
 .side-nav {
     margin: 0;
     padding: 0;
-    width: 200px;
     background-color: #eceeee;
+    height: 500px;
+    border-radius: 0 10px 10px 0;
+    border: 1px solid rgba(47, 47, 47, 0.26);
 }
 
 .side-nav ul {
-    list-style-type: none;
+    font-size: 1.1rem;
     padding: 0;
-    border: 1px solid #2f2f2f;
+    list-style-type: none;
 }
 
 .side-nav li a {
-    display: block;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0.7em;
+    border-bottom: 1px solid rgba(47, 47, 47, 0.26);
     color: #000;
-    padding: 8px 16px;
     text-decoration: none;
+    transition: 0.2s all;
+}
+
+.side-nav li a i {
+    font-size: 1.15em;
+    margin-left: auto;
+    margin-right: 20px;
 }
 
 .side-nav li a.active {
-    background-color: #49a756;
+    background-color: #28a745;
     color: white;
 }
 
+.side-nav li a.active:before {
+    content: ">";
+    margin-right: 1em;
+}
+
 .side-nav li a:hover {
+    letter-spacing: 0.6px;
     background-color: #28a745;
     color: white;
 }
@@ -63,18 +91,6 @@
 
 .group p:before {
     content: " - ";
-}
-
-.new-group {
-    cursor: pointer;
-    color: #414141;
-    font-size: 0.9rem;
-    padding-top: 0.6em;
-}
-
-.new-group:hover {
-    text-decoration: underline;
-    color: #4e555b;
 }
 
 .button-group h2 {
@@ -101,42 +117,72 @@
     background-color: #495157;
     color: white;
 }
-
-#users td {
-    padding: 0.3em 0.4em;
+#users td,
+#users th {
+    padding: 0.6em;
 }
 
-.groups {
+#users td {
+    max-width: 200px;
+}
+
+#users .buttons {
+    vertical-align: inherit;
+}
+
+.new-group {
+    cursor: pointer;
+    color: #414141;
+    font-size: 0.9rem;
+    padding-top: 0.6em;
     position: relative;
+    transition: 0.2s all;
+}
+
+.new-group:hover {
+    color: #4e555b;
 }
 
 .new-group-dropdown {
-    min-width: 200px;
-    min-height: 200px;
+    z-index: 999;
+    min-width: 100%;
     position: absolute;
-    top: 40px;
-    left: -40px;
-    background-color: rgb(241, 234, 241);
+    top: 32px;
+    left: 0;
+    background-color: rgba(74, 76, 76, 0.94);
     padding: 0.2em 0.4em;
-    border-radius: 10px;
+    border-radius: 0 0 10px 10px;
 }
 
 .group-option {
+    color: white;
     cursor: pointer;
-    color: #2f2f2f;
     display: flex;
     flex-direction: column;
     justify-content: center;
     padding: 0.3em;
-    border-radius: 10px;
+    transition: 0.2s all;
+    font-size: 1rem;
+}
+
+.new-group i {
+    font-size: 1.1em;
+    padding-left: 15px;
 }
 
 .group-option:hover {
+    color: #1b1e21;
     background-color: #d7d0d2;
 }
 
-.hidden {
-    display: none;
+/*.hidden {*/
+/*    display: none;*/
+/*}*/
+
+
+/* TODO: Add animation */
+.showen {
+    display: block;
 }
 
 .groups span {
@@ -163,4 +209,86 @@
 
 .perms div {
     margin: 0 0.4em;
+}
+
+.table-logs {
+    text-align: center;
+}
+
+.table-logs .head-contain {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.table-logs .filter-click {
+    cursor: pointer;
+    transition: 0.2s all;
+}
+
+.table-logs .filter-click i {
+    margin-left: 20px;
+    font-size: 1.15rem;
+}
+
+.table-logs .head-contain p {
+    margin: 0;
+    justify-self: center;
+}
+
+.table-logs .filter-click:hover {
+    color: #e9e9e9 !important;
+    background-color: #424a50 !important;
+}
+
+.big-row {
+    height: 150px;
+}
+
+.custom-checkbox .custom-control-input:checked~.custom-control-label::before{
+    background-color: #28a745;
+    border: 1px solid #28a745;
+}
+
+.role-mock {
+    cursor: pointer;
+    color: #28a745 !important;
+    margin-right: 20px !important;
+    transition: 0.2s all;
+    border-radius: 10px;
+}
+
+.role-mock.off {
+    color: #dc3545 !important;
+}
+
+.role-mock:hover {
+    color: white !important;
+    background-color: #4e555b !important;
+}
+
+#logs i {
+    cursor: help;
+}
+
+.mockaroo-menu {
+    z-index: 999;
+    width: 200%;
+    padding: 0.7em;
+    position: absolute;
+    top: 53px;
+    left: 0;
+    background-color: #343a40;
+    color: white;
+    border-radius: 0 0 10px 10px;
+}
+
+.mockaroo-menu .head {
+    border-bottom: 1px solid white;
+}
+
+.selected-groups.anim {
+    white-space: nowrap;
+    overflow: hidden;
 }

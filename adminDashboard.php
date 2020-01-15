@@ -10,6 +10,14 @@ require_once "Models/Role.php";
 require_once "Models/Group.php";
 require_once "Models/User.php";
 
+//$input = [
+//    "currentFilter" => "username",
+//    "currentOrder" => "desc",
+//];
+//
+//var_dump(SessionLog::sortLogs($input));
+//die();
+
 if (Authentication::isLoggedIn() && Authentication::User()->isAdmin()) {
 
     if (isset($_POST["uid"])) {
@@ -47,10 +55,14 @@ if (Authentication::isLoggedIn() && Authentication::User()->isAdmin()) {
         //TODO:: Validation
         User::createUser($formData);
         $message = "User created successfully";
+
     } elseif (isset($_POST["group-change"])) {
         // Manage change
-        var_dump($_POST);
-        die();
+        $group = Group::groupByID($_POST["team-id"]);
+        if ($group) {
+            $group->updateGroup(htmlentities($_POST["team-name"]));
+        }
+        Route::redirect("adminDashboard.php?tab=manageTeams");
     }
 
     require_once "Views/adminDashboard.phtml";

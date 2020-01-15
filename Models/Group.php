@@ -3,6 +3,14 @@
 
 class Group
 {
+    public function updateGroup($groupName)
+    {
+        $sql = "UPDATE `groups` SET group_name = :groupName WHERE id = $this->id";
+        $stmt = Database::db()->prepare($sql);
+        $stmt->bindParam(":groupName", $groupName);
+        $stmt->execute();
+    }
+
     public static function addGroup($groupName)
     {
         QueryBuilder::getInstance()
@@ -28,5 +36,18 @@ class Group
             ->fetchAs("Group")
             ->orderby("group_name")
             ->getAll();
+    }
+
+    /**
+     * @param $id
+     * @return Group
+     */
+    public static function groupByID($id)
+    {
+        return QueryBuilder::getInstance()
+            ->table("groups")
+            ->fetchAs("Group")
+            ->where("id", $id)
+            ->first();
     }
 }
