@@ -34,7 +34,7 @@ class SessionLog
 
     public static function getJSONLogs()
     {
-        $sql = "SELECT SessionLog.id, u.username, endpoint, succeeded, timestamp 
+        $sql = "SELECT SessionLog.id, u.username, endpoint, succeeded, timestamp, reason
                 FROM SessionLog LEFT JOIN users u on SessionLog.user_id = u.id";
 
         $stmt = Database::db()->prepare($sql);

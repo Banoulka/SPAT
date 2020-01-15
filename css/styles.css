@@ -263,3 +263,6 @@
     background-color: #4e555b !important;
 }
 
+#logs i {
+    cursor: help;
+}
