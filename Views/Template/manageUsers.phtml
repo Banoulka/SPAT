@@ -56,15 +56,18 @@
                         <span id="id-<?= $team->id ?>" class="selected-groups"><?= $team->group_name ?><i class="fas fa-minus-square text-danger remove"></i></span>
                     <?php endforeach; ?>
                 </div>
-                <p class="m-0 new-group btn-success btn-sm" id="new-group-button"> Add a new group...</p>
-                <div class="new-group-dropdown hidden">
-                    <?php foreach (Group::allgroups() as $group) : ?>
-                        <div class="group-option" id="gid-<?= $group->id ?>"><?= $group->group_name ?></div>
-                    <?php endforeach; ?>
+                <div class="m-0 mt-2 new-group btn-success btn-sm" id="new-group-button">
+                    Add a new group...<i class="fas fa-plus-square"></i>
+                    <div class="new-group-dropdown hidden">
+                        <?php foreach (Group::allgroups() as $group) : ?>
+                            <div class="group-option" id="gid-<?= $group->id ?>"><?= $group->group_name ?></div>
+                        <?php endforeach; ?>
+                    </div>
                 </div>
             </td>
             <td class="buttons">
                 <button class="ml-auto btn btn-sm btn-dark del-btn" id="save">Save</button>
+                <a href="adminDashboard.php?tab=manageUsers#users" class="ml-auto btn btn-sm btn-outline-danger">Cancel</a>
             </td>
         </tr>
         <form action="<?= $_SERVER["PHP_SELF"] ?>" method="post" id="change">
@@ -124,8 +127,10 @@
             e.stopPropagation();
             if (groupDropdown.classList.contains("hidden")) {
                 groupDropdown.classList.remove("hidden");
+                dropDownButton.children[0].className = "fas fa-caret-square-down";
             } else {
                 groupDropdown.classList.add("hidden");
+                dropDownButton.children[0].className = "fas fa-plus-square";
             }
         });
 
