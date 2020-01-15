@@ -46,6 +46,10 @@ class User
     public function remove()
     {
         QueryBuilder::getInstance()
+            ->table("SessionLog")
+            ->remove(["user_id" => $this->id]);
+
+        QueryBuilder::getInstance()
             ->table("user_roles")
             ->remove(["user_id" => $this->id]);
 
