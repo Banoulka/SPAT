@@ -115,10 +115,14 @@
             let permissionRow = document.createElement("td");
             let timestampRow = document.createElement("td");
 
+            let date = new Date(log.timestamp);
+            console.log(date);
+
             usernameRow.textContent = log.username;
             endpointRow.textContent = log.endpoint;
-            permissionRow.textContent = log.succeeded;
-            timestampRow.textContent = log.timestamp;
+            permissionRow.innerHTML = log.succeeded == 1 ? '<i class="far fa-check-circle text-success"></i>' : '<i class="far fa-times-circle text-danger"></i>';
+            timestampRow.textContent = date.toLocaleString();
+
 
             tableRow.appendChild(usernameRow);
             tableRow.appendChild(endpointRow);
