@@ -14,5 +14,5 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     $logs = SessionLog::getJSONLogs();
 
-    echo json_encode($logs);
+    echo json_encode(array_reverse($logs));
 }

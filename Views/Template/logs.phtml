@@ -3,6 +3,14 @@
 
 ?>
 
+<div class="row mb-2">
+    <div class="col-md-12">
+        <div class="d-flex flex-row justify-content-end">
+            <button id="refresh" class="btn btn-success btn-sm">Refresh<i class="fas fa-sync-alt ml-2"></i></button>
+        </div>
+    </div>
+</div>
+
 <table class="table table-striped table-sm table-logs">
     <caption>Session Logs</caption>
     <thead class="thead-dark">
@@ -52,6 +60,26 @@
 
     let filterClicks = document.getElementsByClassName("filter-click");
     initSetup();
+
+    document.getElementById("refresh").addEventListener("click", async function() {
+
+        document.getElementById("logs").innerHTML = "<tr class=\"big-row\">\n" +
+            "            <td colspan=\"5\">\n" +
+            "                <div class=\"d-flex flex-row justify-content-center align-items-center mt-3\">\n" +
+            "                    <div class=\"spinner-grow text-success\" role=\"status\" style=\"width: 5em; height: 5em;\">\n" +
+            "                        <span class=\"sr-only\">Loading...</span>\n" +
+            "                    </div>\n" +
+            "                </div>\n" +
+            "            </td>\n" +
+            "        </tr>";
+
+
+        this.children[0].classList.add("fa-spin");
+        updateIcons();
+        await getLogs();
+        displayLogs();
+        this.children[0].classList.remove("fa-spin");
+    });
 
     async function initSetup()
     {
