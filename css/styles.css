@@ -179,6 +179,10 @@
 .hidden {
     display: none;
 }
+/* TODO: Add animation */
+.showen {
+    display: block;
+}
 
 .groups span {
     display: flex;
@@ -244,4 +248,17 @@
 .custom-checkbox .custom-control-input:checked~.custom-control-label::before{
     background-color: #28a745;
     border: 1px solid #28a745;
+}
+
+.role-mock {
+    cursor: pointer;
+    color: #28a745 !important;
+    margin-right: 20px !important;
+    transition: 0.2s all;
+    border-radius: 10px;
+}
+
+.role-mock:hover {
+    color: white !important;
+    background-color: #4e555b !important;
 }

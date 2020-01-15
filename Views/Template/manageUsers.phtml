@@ -127,9 +127,11 @@
             e.stopPropagation();
             if (groupDropdown.classList.contains("hidden")) {
                 groupDropdown.classList.remove("hidden");
+                groupDropdown.classList.add("showen");
                 dropDownButton.children[0].className = "fas fa-caret-square-down";
             } else {
                 groupDropdown.classList.add("hidden");
+                groupDropdown.classList.remove("showen");
                 dropDownButton.children[0].className = "fas fa-plus-square";
             }
         });
@@ -166,6 +168,7 @@
 
         document.addEventListener("click", function() {
             groupDropdown.classList.add("hidden");
+            groupDropdown.classList.remove("showen");
         });
 
         document.getElementById("save").addEventListener("click", function() {

@@ -14,7 +14,7 @@
     <script src="https://kit.fontawesome.com/8aa396f8e9.js" crossorigin="anonymous"></script>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light">
+    <nav class="navbar navbar-expand-lg navbar-light shadow-sm">
         <div class="container">
             <a class="navbar-brand" href="index.php">ThinkLab</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -49,8 +49,15 @@
                         </li>
                     <?php endif; ?>
                     <?php if (Authentication::isLoggedIn()) : ?>
+                        <?php if (Authentication::User()->isAdmin()) : ?>
+                            <li class="nav-item">
+                                <div class="nav-link role-mock">
+                                    Mock Role<i class="fas fa-cog ml-2"></i>
+                                </div>
+                            </li>
+                        <?php endif; ?>
                         <li class="nav-item">
-                            <a class="nav-link" href="logout.php">Logout<i class="fas fa-sign-in-alt ml-3"></i></a>
+                            <a class="nav-link" href="logout.php">Logout<i class="fas fa-sign-in-alt ml-2"></i></a>
                         </li>
                     <?php endif; ?>
                 </ul>
