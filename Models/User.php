@@ -97,11 +97,10 @@ class User
      */
     public static function getAllusers()
     {
-        $users = QueryBuilder::getInstance()
+        return QueryBuilder::getInstance()
                     ->table("users")
                     ->fetchAs("User")
                     ->getAll();
-        return $users;
     }
 
     /**

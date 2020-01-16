@@ -17,6 +17,9 @@ if ($succeeded = Authorisation::hasAuth("edit")) {
         "maxOccupants"=> 100,
         "value" => 120000,
     ];
+//    if (empty(Authentication::User()->teams()->list())) {
+//
+//    }
     $data = API::createBuilding($data); //$DataArr??
     echo json_encode($data);
 } else {
