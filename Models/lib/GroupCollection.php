@@ -17,6 +17,13 @@ class GroupCollection
         return $this->teams;
     }
 
+    public function listIDs()
+    {
+        return array_map(function($item) {
+            return $item->id;
+        }, $this->teams);
+    }
+
     public function setTeam($teamIDArr)
     {
         // Remove all the groups previously

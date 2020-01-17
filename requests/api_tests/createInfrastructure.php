@@ -15,6 +15,11 @@ $data = [
     "name" => "M69 Ring roundabout",
     "classification" => "Critical",
 ];
+if (Authentication::isMocking()) {
+    $data["groupId"] = Authentication::mockedUser()->teams()->listIDs();
+} else {
+    $data["groupId"] = Authentication::User()->teams()->listIDs();
+}
 
 if ($succeeded = Authorisation::hasAuth("edit")) {
     $data = API::createInfrastructure($data);
