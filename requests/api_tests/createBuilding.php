@@ -9,7 +9,7 @@ spl_autoload_register(function ($className) {
 });
 if ($succeeded = Authorisation::hasAuth("edit")) {
     $data = [
-        "name" =>"Wetherspoons",
+        "name" =>"Anotherspoons",
         "type" => "Commercial",
         "postcode" => "M1 234",
         "city" => "Manchester",
@@ -17,6 +17,11 @@ if ($succeeded = Authorisation::hasAuth("edit")) {
         "maxOccupants"=> 100,
         "value" => 120000,
     ];
+    if (Authentication::isMocking()) {
+        $data["groupId"] = Authentication::mockedUser()->teams()->listIDs();
+    } else {
+        $data["groupId"] = Authentication::User()->teams()->listIDs();
+    }
     $data = API::createBuilding($data); //$DataArr??
     echo json_encode($data);
 } else {

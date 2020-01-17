@@ -55,14 +55,23 @@
                     <?php if (Authentication::isLoggedIn()) : ?>
                         <?php if (Authentication::User()->isAdmin()) : ?>
                             <li class="nav-item" style="position: relative">
-                                <div class="nav-link role-mock off">
+                                <div class="nav-link role-mock <?= Authentication::isMocking() ? "" : "off" ?>" id="mock-logo">
                                     Mock Role<i class="fas fa-mask ml-2"></i>
                                 </div>
                                 <div class="mockaroo-menu" style="display: none;">
                                     <h5 class="head">Mock Permissions</h5>
-                                    <p>Currently Mocking: none</p>
+                                    <p>Currently Mocking: <span id="m-user"><?= Authentication::isMocking() ? Authentication::mockedUser()->username() : "none"?></span></p>
                                     <form action="#" method="post">
-
+                                        <div class="form-group">
+                                            <label for="selectedUser">Select User:</label>
+                                            <select name="user-id" id="selectedUser" class="form-control">
+                                                <option <?= Authentication::isMocking() ? "" : "selected" ?> disabled>Select a user...</option>
+                                                <?php foreach (User::getAllusers() as $user) : if ($user->id() != Authentication::User()->id()) :?>
+                                                    <option value="<?= $user->id() ?>" <?= Authentication::isMocking() && Authentication::mockedUser()->id() == $user->id() ? "selected" : "" ?>><?= $user->username() ?></option>
+                                                <?php endif; endforeach; ?>
+                                            </select>
+                                        </div>
+                                        <button type="button" name="removeUser" class="btn btn-sm btn-danger" id="stop-mock">Stop Mocking</button>
                                     </form>
                                 </div>
                             </li>
@@ -78,7 +87,48 @@
 </body>
 
 <script>
-    $(".role-mock").on("click", function() {
+    $(".role-mock").on("click", e => {
+        e.stopPropagation();
        $(".mockaroo-menu").slideToggle();
     });
+
+    // Stop propergation when on the menu
+    $(".mockaroo-menu").on("click", e => e.stopPropagation());
+
+    document.getElementById("selectedUser").addEventListener("change", function(){
+        let id = this.value;
+        let body = {
+            "id": id
+        };
+        if (!isNaN(id)) {
+            fetch("requests/users/mockUser.php", {
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                method: "POST",
+                body: JSON.stringify(body),
+
+            }).then(async res => {
+                let json = await res.json();
+                console.log(json.username);
+                document.getElementById("m-user").textContent = json.username;
+            }).catch(err => console.log(err));
+            document.getElementById("mock-logo").classList.remove("off");
+        }
+    });
+
+    document.getElementById("stop-mock").addEventListener("click", () => {
+        $(".mockaroo-menu").slideUp();
+        document.getElementById("selectedUser").selectedIndex = 0;
+        document.getElementById("mock-logo").classList.add("off");
+        fetch("requests/users/mockUser.php", {
+            headers: { "Content-Type": "application/json", },
+            method: "POST",
+            body: {
+                id: "-1"
+            }
+        }).then(res => console.log(res.json()))
+    });
+
+    $("body").on("click", () => $(".mockaroo-menu").slideUp());
 </script>

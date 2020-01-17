@@ -11,6 +11,29 @@ class Authentication {
         Session::setSession(Authentication::$sessionID, serialize($user));
     }
 
+    public static function startMocking(User $user)
+    {
+        Session::setSession("MockedUser", serialize($user));
+    }
+
+    public static function stopMocking()
+    {
+        Session::removeSession("MockedUser");
+    }
+
+    public static function isMocking()
+    {
+        return Session::isSet("MockedUser");
+    }
+
+    /**
+     * @return User
+     */
+    public static function mockedUser()
+    {
+        return unserialize(Session::getSession("MockedUser"));
+    }
+
     /**
      * @return User
      */

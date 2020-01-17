@@ -50,4 +50,12 @@ class Group
             ->where("id", $id)
             ->first();
     }
+
+    public static function groupIDsbyUserID($id)
+    {
+        $sql = "SELECT group_id FROM group_members WHERE user_id = $id";
+        $stmt = Database::db()->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_COLUMN);
+    }
 }

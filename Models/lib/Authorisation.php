@@ -4,6 +4,11 @@ class Authorisation
 {
     public static function hasAuth($permission)
     {
-        return Authentication::User()->role()->hasPermission($permission);
+        if (Authentication::isMocking()) {
+            return Authentication::User()->role()->hasPermission($permission)
+                || Authentication::mockedUser()->role()->hasPermission($permission);
+        } else {
+            return Authentication::User()->role()->hasPermission($permission);
+        }
     }
 }

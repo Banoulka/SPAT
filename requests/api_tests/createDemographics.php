@@ -17,6 +17,11 @@ if ($succeeded = Authorisation::hasAuth("edit")) {
         "totalElderly" => 5000,
         "totalPopulation" => 12000,
     ];
+    if (Authentication::isMocking()) {
+        $data["groupId"] = Authentication::mockedUser()->teams()->listIDs();
+    } else {
+        $data["groupId"] = Authentication::User()->teams()->listIDs();
+    }
     $data = API::createDemographics($data); //$DataArr??
     echo json_encode($data);
 } else {

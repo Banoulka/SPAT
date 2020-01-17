@@ -16,6 +16,11 @@ $data = [
     "type" => "Electric",
     "classification" => "Critical",
 ];
+if (Authentication::isMocking()) {
+    $data["groupId"] = Authentication::mockedUser()->teams()->listIDs();
+} else {
+    $data["groupId"] = Authentication::User()->teams()->listIDs();
+}
 
 
 if ($succeeded = Authorisation::hasAuth("edit")) {
